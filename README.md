@@ -1,6 +1,6 @@
 # react_bootstrap
 
-A library for Dart developers. It is awesome.
+A Dart wrapper for [react-bootstrap] for JS.
 
 ## Usage
 
@@ -9,7 +9,7 @@ A simple usage example:
     import 'package:react_bootstrap/react_bootstrap.dart';
 
     main() {
-      var awesome = new Awesome();
+      // TODO: Provide an example
     }
 
 ## Features and bugs
@@ -17,3 +17,4 @@ A simple usage example:
 Please file feature requests and bugs at the [issue tracker][tracker].
 
 [tracker]: http://example.com/issues/replaceme
+[react-bootstrap]: http://react-bootstrap.github.io
