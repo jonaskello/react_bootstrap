@@ -1,6 +1,6 @@
 # react_bootstrap
 
-A Dart wrapper for [react-bootstrap] for JS.
+A Dart wrapper for the [react-bootstrap] JavaScript library.
 
 ## Usage
 
