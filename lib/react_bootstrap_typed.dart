@@ -40,6 +40,7 @@ typedef ButtonType({CLASSES bsClass, STYLES bsStyle, SIZES bsSize, bool active,
 ButtonType Button = ({bsClass: CLASSES.button, bsStyle: STYLES.defaultStyle,
     bsSize, active, disabled, block, navItem, navDropdown, componentClass, href,
     target, style, onClick, props, children}) => raw.Button_Raw(_mergeMaps({
+  'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
   'bsSize': SIZES_MAP[bsSize],
   'active': active,
@@ -141,10 +142,16 @@ typedef FormControlsType({Map props, dynamic children});
 FormControlsType FormControls =
     ({props, children}) => raw.FormControls_Raw(props, children);
 
-typedef GlyphiconType({Map props, dynamic children});
+typedef GlyphiconType(GLYPHS glyph, {CLASSES bsClass, STYLES bsStyle,
+    SIZES bsSize, Map props, dynamic children});
 
-GlyphiconType Glyphicon =
-    ({props, children}) => raw.Glyphicon_Raw(props, children);
+GlyphiconType Glyphicon = (glyph, {bsClass: 'glyphicon', bsStyle, bsSize, props,
+    children}) => raw.Glyphicon_Raw(_mergeMaps({
+  'glyph': GLYPHS_MAP[glyph],
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+}, props), children);
 
 typedef GridType(
     {bool fluid, dynamic componentClass, Map props, dynamic children});
