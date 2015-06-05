@@ -84,3 +84,13 @@ Map<SIZES, String> SIZES_MAP = {
   SIZES.small: 'small',
   SIZES.xsmall: 'xsmall'
 };
+
+enum NAV_STYLES {
+  tabs,
+  pills
+}
+
+//Map<NAV_STYLES, String> NAV_STYLES_MAP = {
+//  NAV_STYLES.tabs: 'tabs',
+//  NAV_STYLES.pills: 'pills'
+//};
