@@ -117,10 +117,28 @@ typedef CollapsibleMixinType({Map props, dynamic children});
 CollapsibleMixinType CollapsibleMixin =
     ({props, children}) => raw.CollapsibleMixin_Raw(props, children);
 
-typedef DropdownButtonType({Map props, dynamic children});
+typedef DropdownButtonType({CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+    bool pullRight, bool dropup, dynamic title, String href, Function onClick,
+    Function onSelect, bool navItem, bool noCaret, String buttonClassName,
+    Map props, dynamic children});
 
-DropdownButtonType DropdownButton =
-    ({props, children}) => raw.DropdownButton_Raw(props, children);
+DropdownButtonType DropdownButton = ({bsClass: CLASSES.button, bsStyle, bsSize, pullRight,
+    dropup, title, href, onClick, onSelect, navItem, noCaret, buttonClassName,
+    props, children}) => raw.DropdownButton_Raw(_mergeMaps({
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+  'pullRight': pullRight,
+  'dropup': dropup,
+  'title': title,
+  'href': href,
+  'onClick': onClick,
+  'onSelect': onSelect,
+  'navItem': navItem,
+  'noCaret': noCaret,
+  'buttonClassName': buttonClassName,
+  'children': children
+}, props), children);
 
 typedef DropdownMenuType({Map props, dynamic children});
 
@@ -145,8 +163,9 @@ FormControlsType FormControls =
 typedef GlyphiconType(GLYPHS glyph, {CLASSES bsClass, STYLES bsStyle,
     SIZES bsSize, Map props, dynamic children});
 
-GlyphiconType Glyphicon = (glyph, {bsClass: 'glyphicon', bsStyle, bsSize, props,
-    children}) => raw.Glyphicon_Raw(_mergeMaps({
+GlyphiconType Glyphicon = (glyph,
+    {bsClass: 'glyphicon', bsStyle, bsSize, props, children}) => raw
+    .Glyphicon_Raw(_mergeMaps({
   'glyph': GLYPHS_MAP[glyph],
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
