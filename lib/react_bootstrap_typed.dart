@@ -150,7 +150,9 @@ typedef GridType(
     {bool fluid, dynamic componentClass, Map props, dynamic children});
 
 GridType Grid = ({fluid, componentClass: 'div', props, children}) => raw
-    .Grid_Raw(_mergeMaps({'componentClass': componentClass}, props), children);
+    .Grid_Raw(
+        _mergeMaps({'fluid': fluid, 'componentClass': componentClass}, props),
+        children);
 
 typedef InputType({Map props, dynamic children});
 
