@@ -15,6 +15,8 @@ Map _mergeMaps(Map addTo, Map addFrom) {
 
 typedef OnClickHandler(event, String key);
 
+typedef OnSelectHandler(String eventKey, [String href, dynamic unknown]);
+
 typedef AccordionType({Map props, dynamic children});
 
 AccordionType Accordion =
@@ -118,13 +120,13 @@ CollapsibleMixinType CollapsibleMixin =
     ({props, children}) => raw.CollapsibleMixin_Raw(props, children);
 
 typedef DropdownButtonType({CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
-    bool pullRight, bool dropup, dynamic title, String href, Function onClick,
-    Function onSelect, bool navItem, bool noCaret, String buttonClassName,
-    Map props, dynamic children});
+    bool pullRight, bool dropup, dynamic title, String href,
+    OnClickHandler onClick, OnSelectHandler onSelect, bool navItem,
+    bool noCaret, String buttonClassName, Map props, dynamic children});
 
-DropdownButtonType DropdownButton = ({bsClass: CLASSES.button, bsStyle, bsSize, pullRight,
-    dropup, title, href, onClick, onSelect, navItem, noCaret, buttonClassName,
-    props, children}) => raw.DropdownButton_Raw(_mergeMaps({
+DropdownButtonType DropdownButton = ({bsClass: CLASSES.button, bsStyle, bsSize,
+    pullRight, dropup, title, href, onClick, onSelect, navItem, noCaret,
+    buttonClassName, props, children}) => raw.DropdownButton_Raw(_mergeMaps({
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
   'bsSize': SIZES_MAP[bsSize],
@@ -208,10 +210,23 @@ typedef ListGroupItemType({Map props, dynamic children});
 ListGroupItemType ListGroupItem =
     ({props, children}) => raw.ListGroupItem_Raw(props, children);
 
-typedef MenuItemType({Map props, dynamic children});
+typedef MenuItemType({bool header, bool divider, String href, String title,
+    String target, OnSelectHandler onSelect, dynamic eventKey, bool active,
+    bool disabled, Map props, dynamic children});
 
-MenuItemType MenuItem =
-    ({props, children}) => raw.MenuItem_Raw(props, children);
+MenuItemType MenuItem = ({header, divider, href: '#', title, target, onSelect,
+    eventKey, active: false, disabled, props, children}) => raw.MenuItem_Raw(
+        _mergeMaps({
+  'header': header,
+  'divider': divider,
+  'href': href,
+  'title': title,
+  'target': target,
+  'onSelect': onSelect,
+  'eventKey': eventKey,
+  'active': active,
+  'disabled': disabled,
+}, props), children);
 
 typedef ModalType({Map props, dynamic children});
 
@@ -219,7 +234,7 @@ ModalType Modal = ({props, children}) => raw.Modal_Raw(props, children);
 
 typedef NavType({dynamic key, CLASSES bsClass, NAV_STYLES bsStyle, SIZES bsSize,
     String activeHref, dynamic activeKey, bool stacked, bool justified,
-    Function onSelect, bool collapsible, bool expanded, bool navbar,
+    OnSelectHandler onSelect, bool collapsible, bool expanded, bool navbar,
     dynamic eventKey, bool pullRight, bool right, bool defaultExpanded,
     Map props, dynamic children});
 
@@ -276,8 +291,8 @@ NavbarType Navbar = ({key, bsClass: CLASSES.navbar,
 }, props), children);
 
 typedef NavItemType({dynamic key, CLASSES bsClass, NAV_STYLES bsStyle,
-    SIZES bsSize, Function onSelect, bool active, bool disabled, String href,
-    dynamic title, dynamic eventKey, String target, Map props,
+    SIZES bsSize, OnSelectHandler onSelect, bool active, bool disabled,
+    String href, dynamic title, dynamic eventKey, String target, Map props,
     dynamic children});
 
 NavItemType NavItem = ({key, bsClass, bsStyle, bsSize, onSelect, active,
