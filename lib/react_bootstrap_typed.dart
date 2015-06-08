@@ -66,10 +66,16 @@ typedef ButtonInputType({Map props, dynamic children});
 ButtonInputType ButtonInput =
     ({props, children}) => raw.ButtonInput_Raw(props, children);
 
-typedef ButtonToolbarType({Map props, dynamic children});
+typedef ButtonToolbarType({CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+    Map props, dynamic children});
 
-ButtonToolbarType ButtonToolbar =
-    ({props, children}) => raw.ButtonToolbar_Raw(props, children);
+ButtonToolbarType ButtonToolbar = ({bsClass: CLASSES.button_toolbar,
+    bsStyle, bsSize, props, children}) => raw
+    .ButtonToolbar_Raw(_mergeMaps({
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+}, props), children);
 
 typedef CollapsibleNavType({Map props, dynamic children});
 

@@ -25,8 +25,8 @@ enum CLASSES {
 Map<CLASSES, String> CLASSES_MAP = {
   CLASSES.alert: 'alert',
   CLASSES.button: 'button',
-  CLASSES.button_group: 'btn-group',
-  CLASSES.button_toolbar: 'btn-toolbar',
+  CLASSES.button_group: 'button-group',
+  CLASSES.button_toolbar: 'button-toolbar',
   CLASSES.column: 'column',
   CLASSES.input_group: 'input-group',
   CLASSES.form: 'form',
