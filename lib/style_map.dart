@@ -90,10 +90,10 @@ enum NAV_STYLES {
   pills
 }
 
-//Map<NAV_STYLES, String> NAV_STYLES_MAP = {
-//  NAV_STYLES.tabs: 'tabs',
-//  NAV_STYLES.pills: 'pills'
-//};
+Map<NAV_STYLES, String> NAV_STYLES_MAP = {
+  NAV_STYLES.tabs: 'tabs',
+  NAV_STYLES.pills: 'pills'
+};
 
 
 enum GLYPHS {

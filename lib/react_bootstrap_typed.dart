@@ -34,14 +34,15 @@ typedef BadgeType({Map props, dynamic children});
 
 BadgeType Badge = ({props, children}) => raw.Badge_Raw(props, children);
 
-typedef ButtonType({CLASSES bsClass, STYLES bsStyle, SIZES bsSize, bool active,
-    bool disabled, bool block, bool navItem, bool navDropdown,
+typedef ButtonType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize, bool active,
+    bool disabled, bool block, bool navItem, bool navDropdown, bool right,
     dynamic componentClass, String href, String target, Map style,
     OnClickHandler onClick, Map props, dynamic children});
 
-ButtonType Button = ({bsClass: CLASSES.button, bsStyle: STYLES.defaultStyle,
-    bsSize, active, disabled, block, navItem, navDropdown, componentClass, href,
+ButtonType Button = ({key, bsClass: CLASSES.button, bsStyle: STYLES.defaultStyle,
+    bsSize, active, disabled, block, navItem, navDropdown, right, componentClass, href,
     target, style, onClick, props, children}) => raw.Button_Raw(_mergeMaps({
+  'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
   'bsSize': SIZES_MAP[bsSize],
@@ -50,6 +51,7 @@ ButtonType Button = ({bsClass: CLASSES.button, bsStyle: STYLES.defaultStyle,
   'block': block,
   'navItem': navItem,
   'navDropdown': navDropdown,
+  'right': right,
   'componentClass': componentClass,
   'href': href,
   'target': target,
@@ -92,14 +94,15 @@ typedef CarouselItemType({Map props, dynamic children});
 CarouselItemType CarouselItem =
     ({props, children}) => raw.CarouselItem_Raw(props, children);
 
-typedef ColType({int xs, int sm, int md, int lg, int xsOffset, int smOffset,
+typedef ColType({dynamic key, int xs, int sm, int md, int lg, int xsOffset, int smOffset,
     int mdOffset, int lgOffset, int xsPush, int smPush, int mdPush, int lgPush,
     int xsPull, int smPull, int mdPull, int lgPull, dynamic componentClass,
     Map props, dynamic children});
 
-ColType Col = ({xs, sm, md, lg, xsOffset, smOffset, mdOffset, lgOffset, xsPush,
+ColType Col = ({key, xs, sm, md, lg, xsOffset, smOffset, mdOffset, lgOffset, xsPush,
     smPush, mdPush, lgPush, xsPull, smPull, mdPull, lgPull,
     componentClass: 'div', props, children}) => raw.Col_Raw(_mergeMaps({
+  'key': key,
   'xs': xs,
   'sm': sm,
   'md': md,
@@ -125,14 +128,15 @@ typedef CollapsibleMixinType({Map props, dynamic children});
 CollapsibleMixinType CollapsibleMixin =
     ({props, children}) => raw.CollapsibleMixin_Raw(props, children);
 
-typedef DropdownButtonType({CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+typedef DropdownButtonType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
     bool pullRight, bool dropup, dynamic title, String href,
     OnClickHandler onClick, OnSelectHandler onSelect, bool navItem,
     bool noCaret, String buttonClassName, Map props, dynamic children});
 
-DropdownButtonType DropdownButton = ({bsClass: CLASSES.button, bsStyle, bsSize,
+DropdownButtonType DropdownButton = ({key, bsClass: CLASSES.button, bsStyle, bsSize,
     pullRight, dropup, title, href, onClick, onSelect, navItem, noCaret,
     buttonClassName, props, children}) => raw.DropdownButton_Raw(_mergeMaps({
+  'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
   'bsSize': SIZES_MAP[bsSize],
@@ -216,13 +220,14 @@ typedef ListGroupItemType({Map props, dynamic children});
 ListGroupItemType ListGroupItem =
     ({props, children}) => raw.ListGroupItem_Raw(props, children);
 
-typedef MenuItemType({bool header, bool divider, String href, String title,
+typedef MenuItemType({dynamic key, bool header, bool divider, String href, String title,
     String target, OnSelectHandler onSelect, dynamic eventKey, bool active,
     bool disabled, Map props, dynamic children});
 
-MenuItemType MenuItem = ({header, divider, href: '#', title, target, onSelect,
+MenuItemType MenuItem = ({key, header, divider, href: '#', title, target, onSelect,
     eventKey, active: false, disabled, props, children}) => raw.MenuItem_Raw(
         _mergeMaps({
+  'key': key,
   'header': header,
   'divider': divider,
   'href': href,
@@ -250,7 +255,7 @@ NavType Nav = ({key, bsClass: CLASSES.nav, bsStyle, bsSize, activeHref,
     .Nav_Raw(_mergeMaps({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
-  'bsStyle': STYLES_MAP[bsStyle],
+  'bsStyle': NAV_STYLES_MAP[bsStyle],
   'bsSize': SIZES_MAP[bsSize],
   'activeHref': activeHref,
   'activeKey': activeKey,
