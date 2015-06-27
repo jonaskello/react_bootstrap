@@ -633,28 +633,28 @@ Map<BUTTON_INPUT_TYPES, String> BUTTON_INPUT_TYPES_MAP = {
   BUTTON_INPUT_TYPES.submit: 'submit',
 };
 
-enum BUTTON_INPUT_SIZES {
+enum FORM_GROUP_SIZES {
   small,
   medium,
   large
 }
 
-Map<BUTTON_INPUT_SIZES, String> BUTTON_INPUT_SIZES_MAP = {
-  BUTTON_INPUT_SIZES.small: 'small',
-  BUTTON_INPUT_SIZES.medium: 'medium',
-  BUTTON_INPUT_SIZES.large: 'large',
+Map<FORM_GROUP_SIZES, String> FORM_GROUP_SIZES_MAP = {
+  FORM_GROUP_SIZES.small: 'small',
+  FORM_GROUP_SIZES.medium: 'medium',
+  FORM_GROUP_SIZES.large: 'large',
 };
 
-enum BUTTON_INPUT_STYLES {
+enum FORM_GROUP_STYLES {
   success,
   warning,
   error
 }
 
-Map<BUTTON_INPUT_STYLES, String> BUTTON_INPUT_STYLES_MAP = {
-  BUTTON_INPUT_STYLES.success: 'success',
-  BUTTON_INPUT_STYLES.warning: 'warning',
-  BUTTON_INPUT_STYLES.error: 'error',
+Map<FORM_GROUP_STYLES, String> FORM_GROUP_STYLES_MAP = {
+  FORM_GROUP_STYLES.success: 'success',
+  FORM_GROUP_STYLES.warning: 'warning',
+  FORM_GROUP_STYLES.error: 'error',
 };
 
 enum CAROUSEL_DIRECTION {

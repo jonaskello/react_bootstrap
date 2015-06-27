@@ -117,7 +117,7 @@ ButtonGroupType ButtonGroup =
   'block':block,
 }, props), children);
 
-typedef ButtonInputType({ BUTTON_INPUT_TYPES type, BUTTON_INPUT_SIZES bsSize, BUTTON_INPUT_STYLES bsStyle,
+typedef ButtonInputType({ BUTTON_INPUT_TYPES type, FORM_GROUP_SIZES bsSize, FORM_GROUP_STYLES bsStyle,
                         dynamic label, dynamic help, dynamic addonBefore,
                         dynamic addonAfter, dynamic buttonBefore,
                         dynamic buttonAfter, bool hasFeedback, String id,
@@ -131,8 +131,8 @@ ButtonInputType ButtonInput = ({type, bsSize, bsStyle,
                                multiple, disabled, value,
                                props, children}) => raw.ButtonInput_Raw(_mergeMaps({
   'type':BUTTON_INPUT_TYPES_MAP[type],
-  'bsSize':BUTTON_INPUT_SIZES_MAP[bsSize],
-  'bsStyle':BUTTON_INPUT_STYLES_MAP[bsStyle],
+  'bsSize':FORM_GROUP_SIZES_MAP[bsSize],
+  'bsStyle':FORM_GROUP_STYLES_MAP[bsStyle],
   'label':label,
   'help':help,
   'addonBefore':addonBefore,
@@ -301,35 +301,28 @@ DropdownButtonType DropdownButton = ({key, bsClass: CLASSES.button, bsStyle, bsS
   'children': children
 }, props), children);
 
+typedef DropdownMenuType({bool pullRight, OnSelectHandler onSelect,
+                         Map props, dynamic children});
 
-/*
-const DropdownMenu = React.createClass({
-  propTypes: {
-    pullRight: React.PropTypes.bool,
-    onSelect: React.PropTypes.func
-  },
- */
+DropdownMenuType DropdownMenu = ({ pullRight, onSelect,
+                                 props, children}) => raw.DropdownMenu_Raw(_mergeMaps({
+  'pullRight':pullRight,
+  'onSelect':onSelect
+}, props), children);
 
-typedef DropdownMenuType({Map props, dynamic children});
+typedef FormGroupType({ bool standalone, bool hasFeedback, FORM_GROUP_SIZES bsSize,
+                      FORM_GROUP_STYLES bsStyle, String groupClassName,
+                      Map props, dynamic children});
 
-DropdownMenuType DropdownMenu =
-    ({props, children}) => raw.DropdownMenu_Raw(props, children);
-
-
-//typedef DropdownStateMixinType({Map props, dynamic children});
-//
-//DropdownStateMixinType DropdownStateMixin =
-//    ({props, children}) => raw.DropdownStateMixin_Raw(props, children);
-
-//typedef FadeMixinType({Map props, dynamic children});
-//
-//FadeMixinType FadeMixin =
-//    ({props, children}) => raw.FadeMixin_Raw(props, children);
-
-//typedef FormControlsType({Map props, dynamic children});
-//
-//FormControlsType FormControls =
-//    ({props, children}) => raw.FormControls_Raw(props, children);
+FormGroupType FormGroup = ({standalone: false, hasFeedback, bsSize,
+                           bsStyle, groupClassName,
+                           props, children}) => raw.FormControls_Raw(_mergeMaps({
+  'standalone': standalone,
+  'hasFeedback': hasFeedback,
+  'bsSize': bsSize,
+  'bsStyle': bsStyle,
+  'groupClassName': groupClassName,
+}, props), children);
 
 
 typedef GlyphiconType(GLYPHS glyph, {CLASSES bsClass, STYLES bsStyle,
@@ -352,33 +345,37 @@ GridType Grid = ({fluid, componentClass: 'div', props, children}) => raw
     _mergeMaps({'fluid': fluid, 'componentClass': componentClass}, props),
     children);
 
-/*
+typedef InputType({ String type, FORM_GROUP_SIZES bsSize, FORM_GROUP_STYLES bsStyle,
+                  dynamic label, dynamic help, dynamic addonBefore,
+                  dynamic addonAfter, dynamic buttonBefore,
+                  dynamic buttonAfter, bool hasFeedback, String id,
+                  String groupClassName, String wrapperClassName, String labelClassName,
+                  bool multiple, bool disabled, dynamic value,
+                  Map props, dynamic children});
 
-InputBase.propTypes = {
-  type: React.PropTypes.string,
-  label: React.PropTypes.node,
-  help: React.PropTypes.node,
-  addonBefore: React.PropTypes.node,
-  addonAfter: React.PropTypes.node,
-  buttonBefore: React.PropTypes.node,
-  buttonAfter: React.PropTypes.node,
-  bsSize: React.PropTypes.oneOf(['small', 'medium', 'large']),
-  bsStyle: React.PropTypes.oneOf(['success', 'warning', 'error']),
-  hasFeedback: React.PropTypes.bool,
-  id: React.PropTypes.string,
-  groupClassName: React.PropTypes.string,
-  wrapperClassName: React.PropTypes.string,
-  labelClassName: React.PropTypes.string,
-  multiple: React.PropTypes.bool,
-  disabled: React.PropTypes.bool,
-  value: React.PropTypes.any
-};
-
- */
-
-typedef InputType({Map props, dynamic children});
-
-InputType Input = ({props, children}) => raw.Input_Raw(props, children);
+InputType Input = ({type, bsSize, bsStyle,
+                   label, help, addonBefore, addonAfter, buttonBefore, buttonAfter,
+                   hasFeedback, id, groupClassName, wrapperClassName, labelClassName,
+                   multiple, disabled, value,
+                   props, children}) => raw.Input_Raw(_mergeMaps({
+  'type':type,
+  'bsSize':FORM_GROUP_SIZES_MAP[bsSize],
+  'bsStyle':FORM_GROUP_STYLES_MAP[bsStyle],
+  'label':label,
+  'help':help,
+  'addonBefore':addonBefore,
+  'addonAfter':addonAfter,
+  'buttonBefore':buttonBefore,
+  'buttonAfter':buttonAfter,
+  'hasFeedback':hasFeedback,
+  'id':id,
+  'groupClassName':groupClassName,
+  'wrapperClassName':wrapperClassName,
+  'labelClassName':labelClassName,
+  'multiple':multiple,
+  'disabled':disabled,
+  'value':value,
+}, props), children);
 
 
 /*
