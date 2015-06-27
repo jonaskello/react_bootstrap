@@ -230,31 +230,23 @@ props,
 prevIcon == null ? null : {'prevIcon':prevIcon},
 nextIcon == null ? null : {'nextIcon':nextIcon}), children);
 
+typedef CarouselItemType({ CAROUSEL_DIRECTION direction, bool animation, Function onAnimateOutEnd,
+                         bool active, bool animateIn, bool animateOut, dynamic caption, int index,
+                         Map props, dynamic children});
 
-/*
-const CarouselItem = React.createClass({
-  propTypes: {
-    direction: React.PropTypes.oneOf(['prev', 'next']),
-    onAnimateOutEnd: React.PropTypes.func,
-    active: React.PropTypes.bool,
-    animateIn: React.PropTypes.bool,
-    animateOut: React.PropTypes.bool,
-    caption: React.PropTypes.node,
-    index: React.PropTypes.number
-  },
-
-  getDefaultProps() {
-    return {
-      animation: true
-    };
-  },
- */
-
-
-typedef CarouselItemType({Map props, dynamic children});
-
-CarouselItemType CarouselItem =
-    ({props, children}) => raw.CarouselItem_Raw(props, children);
+CarouselItemType CarouselItem = ({ direction,
+                                 animation: true, onAnimateOutEnd, active, animateIn, animateOut,
+                                 caption, index, props, children}) => raw.CarouselItem_Raw(
+    _mergeMaps({
+      'direction': direction,
+      'animation': animation,
+      'onAnimateOutEnd': onAnimateOutEnd,
+      'active': active,
+      'animateIn': animateIn,
+      'animateOut': animateOut,
+      'caption': caption,
+      'index': index,
+    }, props), children);
 
 typedef ColType({dynamic key, int xs, int sm, int md, int lg, int xsOffset, int smOffset,
                 int mdOffset, int lgOffset, int xsPush, int smPush, int mdPush, int lgPush,
@@ -284,11 +276,6 @@ ColType Col = ({key, xs, sm, md, lg, xsOffset, smOffset, mdOffset, lgOffset, xsP
   'componentClass': componentClass,
   'children': children
 }, props), children);
-
-//typedef CollapsibleMixinType({Map props, dynamic children});
-//
-//CollapsibleMixinType CollapsibleMixin =
-//    ({props, children}) => raw.CollapsibleMixin_Raw(props, children);
 
 typedef DropdownButtonType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
                            bool pullRight, bool dropup, dynamic title, String href,
