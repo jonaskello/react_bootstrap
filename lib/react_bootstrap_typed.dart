@@ -590,13 +590,13 @@ NavItemType NavItem = ({key, bsClass, bsStyle, bsSize, onSelect, active,
   'target': target,
 }, props), children);
 
-typedef OverlayTriggerType({String trigger, OVERLAY_TRIGGER_PLACEMENT placement, int delay,
+typedef OverlayTriggerType({String trigger, PLACEMENTS placement, int delay,
                            int delayShow, int delayHide, bool defaultOverlayShown, dynamic overlay,
                            dynamic onBlur, OnClickHandler onClick, Function onFocus, Function onMouseEnter,
                            Function onMouseLeave, int containerPadding, bool rootClose,
                            Map props, dynamic children});
 
-OverlayTriggerType OverlayTrigger = ({trigger: const ['hover', 'focus'], placement: OVERLAY_TRIGGER_PLACEMENT.right,
+OverlayTriggerType OverlayTrigger = ({trigger: const ['hover', 'focus'], placement: PLACEMENTS.right,
                                      delay, delayShow, delayHide, defaultOverlayShown, overlay,
                                      onBlur, onClick, onFocus, onMouseEnter, onMouseLeave, containerPadding: 0, rootClose,
                                      props, children}) => raw.OverlayTrigger_Raw(_mergeMaps({
@@ -939,36 +939,26 @@ typedef ThumbnailType({Map props, dynamic children});
 ThumbnailType Thumbnail =
     ({props, children}) => raw.Thumbnail_Raw(props, children);
 
+typedef TooltipType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                    PLACEMENTS placement, int positionLeft, int positionTop,
+                    dynamic arrowOffsetLeft, dynamic arrowOffsetTop, bool animation,
+                    Map props, dynamic children});
 
-/*
-const Tooltip = React.createClass({
-  mixins: [BootstrapMixin, FadeMixin],
-
-  propTypes: {
-    placement: React.PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-    positionLeft: React.PropTypes.number,
-    positionTop: React.PropTypes.number,
-    arrowOffsetLeft: React.PropTypes.oneOfType([
-      React.PropTypes.number, React.PropTypes.string
-    ]),
-    arrowOffsetTop: React.PropTypes.oneOfType([
-      React.PropTypes.number, React.PropTypes.string
-    ]),
-    animation: React.PropTypes.bool
-  },
-
-  getDefaultProps() {
-    return {
-      placement: 'right',
-      animation: true
-    };
-  },
-
-*/
-
-typedef TooltipType({Map props, dynamic children});
-
-TooltipType Tooltip = ({props, children}) => raw.Tooltip_Raw(props, children);
+TooltipType Tooltip = ({key, bsClass, bsStyle, bsSize,
+                       placement: PLACEMENTS.right, positionLeft, positionTop, arrowOffsetLeft,
+                       arrowOffsetTop, animation: true,
+                       props, children}) => raw.Tooltip_Raw(_mergeMaps({
+  'key': key,
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+  'placement': placement,
+  'positionLeft': positionLeft,
+  'positionTop': positionTop,
+  'arrowOffsetLeft': arrowOffsetLeft,
+  'arrowOffsetTop': arrowOffsetTop,
+  'animation': animation,
+}, props), children);
 
 
 /*

@@ -693,16 +693,16 @@ Map<MODAL_BACKDROPS, String> MODAL_BACKDROPS_MAP = {
   MODAL_BACKDROPS.falseValue: false,
 };
 
-enum OVERLAY_TRIGGER_PLACEMENT {
+enum PLACEMENTS {
   top,
   right,
   bottom,
   left,
 }
 
-Map<OVERLAY_TRIGGER_PLACEMENT, String> OVERLAY_TRIGGER_PLACEMENT_MAP = {
-  OVERLAY_TRIGGER_PLACEMENT.top: 'top',
-  OVERLAY_TRIGGER_PLACEMENT.right: 'right',
-  OVERLAY_TRIGGER_PLACEMENT.bottom: 'bottom',
-  OVERLAY_TRIGGER_PLACEMENT.left: 'left',
+Map<PLACEMENTS, String> PLACEMENTS_MAP = {
+  PLACEMENTS.top: 'top',
+  PLACEMENTS.right: 'right',
+  PLACEMENTS.bottom: 'bottom',
+  PLACEMENTS.left: 'left',
 };
