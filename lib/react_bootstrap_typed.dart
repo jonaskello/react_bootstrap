@@ -95,74 +95,56 @@ ButtonType Button = ({key, bsClass: CLASSES.button, bsStyle: STYLES.defaultStyle
   'onClick': onClick
 }, props), children);
 
-
-/*
-const ButtonGroup = React.createClass({
-  mixins: [BootstrapMixin],
-
-  propTypes: {
-    vertical:  React.PropTypes.bool,
-    justified: React.PropTypes.bool,
-    /**
-     * Display block buttons, only useful when used with the "vertical" prop.
-     * @type {bool}
-     */
-    block: CustomPropTypes.all([
-      React.PropTypes.bool,
-      function(props, propName, componentName) {
-        if (props.block && !props.vertical) {
-          return new Error('The block property requires the vertical property to be set to have any effect');
-        }
-      }
-    ])
-  },
- */
-
-typedef ButtonGroupType({Map props, dynamic children});
+typedef ButtonGroupType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                        bool vertical,
+                        bool justified,
+                        bool block,
+                        Map props, dynamic children});
 
 ButtonGroupType ButtonGroup =
-    ({props, children}) => raw.ButtonGroup_Raw(props, children);
+    ({key, bsClass, bsStyle, bsSize,
+     vertical, justified, block,
+     props, children}) => raw.ButtonGroup_Raw(_mergeMaps({
+  'key': key,
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+  'vertical':vertical,
+  'justified':justified,
+  'block':block,
+}, props), children);
 
+typedef ButtonInputType({ BUTTON_INPUT_TYPES type, BUTTON_INPUT_SIZES bsSize, BUTTON_INPUT_STYLES bsStyle,
+                        dynamic label, dynamic help, dynamic addonBefore,
+                        dynamic addonAfter, dynamic buttonBefore,
+                        dynamic buttonAfter, bool hasFeedback, String id,
+                        String groupClassName, String wrapperClassName, String labelClassName,
+                        bool multiple, bool disabled, dynamic value,
+                        Map props, dynamic children});
 
-/*
-ButtonInput.types = ['button', 'reset', 'submit'];
-
-ButtonInput.propTypes = {
-  type: React.PropTypes.oneOf(ButtonInput.types),
-  bsStyle(props) {
-    //defer to Button propTypes of bsStyle
-    return null;
-  },
-  children: childrenValueValidation,
-  value: childrenValueValidation
-};
-
-InputBase.propTypes = {
-  type: React.PropTypes.string,
-  label: React.PropTypes.node,
-  help: React.PropTypes.node,
-  addonBefore: React.PropTypes.node,
-  addonAfter: React.PropTypes.node,
-  buttonBefore: React.PropTypes.node,
-  buttonAfter: React.PropTypes.node,
-  bsSize: React.PropTypes.oneOf(['small', 'medium', 'large']),
-  bsStyle: React.PropTypes.oneOf(['success', 'warning', 'error']),
-  hasFeedback: React.PropTypes.bool,
-  id: React.PropTypes.string,
-  groupClassName: React.PropTypes.string,
-  wrapperClassName: React.PropTypes.string,
-  labelClassName: React.PropTypes.string,
-  multiple: React.PropTypes.bool,
-  disabled: React.PropTypes.bool,
-  value: React.PropTypes.any
-};
- */
-
-typedef ButtonInputType({Map props, dynamic children});
-
-ButtonInputType ButtonInput =
-    ({props, children}) => raw.ButtonInput_Raw(props, children);
-
+ButtonInputType ButtonInput = ({type, bsSize, bsStyle,
+                               label, help, addonBefore, addonAfter, buttonBefore, buttonAfter,
+                               hasFeedback, id, groupClassName, wrapperClassName, labelClassName,
+                               multiple, disabled, value,
+                               props, children}) => raw.ButtonInput_Raw(_mergeMaps({
+  'type':BUTTON_INPUT_TYPES_MAP[type],
+  'bsSize':BUTTON_INPUT_SIZES_MAP[bsSize],
+  'bsStyle':BUTTON_INPUT_STYLES_MAP[bsStyle],
+  'label':label,
+  'help':help,
+  'addonBefore':addonBefore,
+  'addonAfter':addonAfter,
+  'buttonBefore':buttonBefore,
+  'buttonAfter':buttonAfter,
+  'hasFeedback':hasFeedback,
+  'id':id,
+  'groupClassName':groupClassName,
+  'wrapperClassName':wrapperClassName,
+  'labelClassName':labelClassName,
+  'multiple':multiple,
+  'disabled':disabled,
+  'value':value,
+}, props), children);
 
 typedef ButtonToolbarType({CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
                           Map props, dynamic children});
