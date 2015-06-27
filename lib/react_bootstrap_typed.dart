@@ -19,19 +19,6 @@ typedef OnSelectHandler(String eventKey, [String href, dynamic unknown]);
 
 // dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
 
-/*
- mixins: [BootstrapMixin],
-
-  propTypes: {
-    : React.PropTypes.,
-    : React.PropTypes.any,
-    : React.PropTypes.,
-    children: React.PropTypes.node,
-    : React.PropTypes.any,
-    : React.PropTypes.func
-  },
-*/
-
 typedef AccordionType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
                       bool accordion, dynamic activeKey, String className, dynamic defaultActiveKey,
                       OnSelectHandler onSelect, Map props, dynamic children});
@@ -50,46 +37,40 @@ AccordionType Accordion = ({key, bsClass, bsStyle, bsSize,
   'onSelect':onSelect }, props), children);
 
 
-/*
-propTypes: {
-    offset: React.PropTypes.number,
-    offsetTop: React.PropTypes.number,
-    offsetBottom: React.PropTypes.number
-  },
- */
+typedef AffixType({ int offset, int offsetTop, int offsetBottom,
+                  Map props, dynamic children});
 
-typedef AffixType({Map props, dynamic children});
+AffixType Affix = ({offset, offsetTop, offsetBottom, props, children}) => raw.Affix_Raw(
+    _mergeMaps({
+      'offset':offset,
+      'offsetTop':offsetTop,
+      'offsetBottom':offsetBottom,
+    }, props), children);
 
-AffixType Affix = ({props, children}) => raw.Affix_Raw(props, children);
+typedef AlertType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                  Function onDismiss,
+                  int dismissAfter,
+                  String closeLabel,
+                  Map props, dynamic children});
 
+AlertType Alert = ({ key, bsClass, bsStyle, bsSize,
+                   onDismiss, dismissAfter, closeLabel,
+                   props, children}) => raw.Alert_Raw(_mergeMaps({
+  'key': key,
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+  'onDismiss':onDismiss,
+  'dismissAfter':dismissAfter,
+  'closeLabel':closeLabel,
+}, props), children);
 
-/*
-mixins: [BootstrapMixin],
+typedef BadgeType({bool pullRight, Map props, dynamic children});
 
-  propTypes: {
-    onDismiss: React.PropTypes.func,
-    dismissAfter: React.PropTypes.number,
-    closeLabel: React.PropTypes.string
-  },
- */
-
-
-typedef AlertType({Map props, dynamic children});
-
-AlertType Alert = ({props, children}) => raw.Alert_Raw(props, children);
-
-
-/*
-propTypes: {
-    pullRight: React.PropTypes.bool
-  },
- */
-
-
-typedef BadgeType({Map props, dynamic children});
-
-BadgeType Badge = ({props, children}) => raw.Badge_Raw(props, children);
-
+BadgeType Badge = ({pullRight, props, children}) => raw.Badge_Raw(
+    _mergeMaps({
+      'pullRight': pullRight
+    }, props), children);
 
 typedef ButtonType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize, bool active,
                    bool disabled, bool block, bool navItem, bool navDropdown,
@@ -181,7 +162,6 @@ typedef ButtonInputType({Map props, dynamic children});
 
 ButtonInputType ButtonInput =
     ({props, children}) => raw.ButtonInput_Raw(props, children);
-
 
 
 typedef ButtonToolbarType({CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
@@ -377,7 +357,6 @@ DropdownMenuType DropdownMenu =
 //    ({props, children}) => raw.FormControls_Raw(props, children);
 
 
-
 typedef GlyphiconType(GLYPHS glyph, {CLASSES bsClass, STYLES bsStyle,
 SIZES bsSize, Map props, dynamic children});
 
@@ -459,7 +438,6 @@ const Jumbotron = React.createClass({
  */
 
 
-
 typedef JumbotronType({Map props, dynamic children});
 
 JumbotronType Jumbotron =
@@ -527,9 +505,6 @@ ListGroupItemType ListGroupItem =
     ({props, children}) => raw.ListGroupItem_Raw(props, children);
 
 
-
-
-
 typedef MenuItemType({dynamic key, bool header, bool divider, String href, String title,
                      String target, OnSelectHandler onSelect, dynamic eventKey, bool active,
                      bool disabled, Map props, dynamic children});
@@ -548,7 +523,6 @@ MenuItemType MenuItem = ({key, header, divider, href: '#', title, target, onSele
       'active': active,
       'disabled': disabled,
     }, props), children);
-
 
 
 /*
@@ -603,7 +577,6 @@ typedef ModalTriggerType({Map props, dynamic children});
 
 ModalTriggerType ModalTrigger =
     ({props, children}) => raw.ModalTrigger_Raw(props, children);
-
 
 
 typedef NavType({dynamic key, CLASSES bsClass, NAV_STYLES bsStyle, SIZES bsSize,
@@ -856,7 +829,6 @@ const Popover = React.createClass({
  */
 
 
-
 typedef PopoverType({Map props, dynamic children});
 
 PopoverType Popover = ({props, children}) => raw.Popover_Raw(props, children);
@@ -900,7 +872,6 @@ typedef RowType({dynamic componentClass, Map props, dynamic children});
 
 RowType Row = ({componentClass: 'div', props, children}) => raw.Row_Raw(
     _mergeMaps({'componentClass': componentClass}, props), children);
-
 
 
 //typedef SafeAnchorType({Map props, dynamic children});
