@@ -426,26 +426,24 @@ typedef ListGroupItemType({dynamic key, CLASSES bsClass, LIST_GROUP_ITEM_STYLES 
                           String target,
                           Map props, dynamic children});
 
-ListGroupItemType ListGroupItem =
-    ({key, bsClass: CLASSES.list_group_item, bsStyle, bsSize,
-     className, active, disabled, header, listItem,
-     onClick, eventKey, href, target,
-     props, children}) => raw.ListGroupItem_Raw(
-    _mergeMaps({
-      'key': key,
-      'bsClass': CLASSES_MAP[bsClass],
-      'bsStyle': LIST_GROUP_ITEM_STYLES_MAP[bsStyle],
-      'bsSize': SIZES_MAP[bsSize],
-      'className':className,
-      'active':active,
-      'disabled':disabled,
-      'header':header,
-      'listItem':listItem,
-      'onClick':onClick,
-      'eventKey':eventKey,
-      'href':href,
-      'target':target,
-    }, props), children);
+ListGroupItemType ListGroupItem = ({key, bsClass: CLASSES.list_group_item, bsStyle, bsSize,
+                                   className, active, disabled, header, listItem,
+                                   onClick, eventKey, href, target,
+                                   props, children}) => raw.ListGroupItem_Raw(_mergeMaps({
+  'key': key,
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': LIST_GROUP_ITEM_STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+  'className':className,
+  'active':active,
+  'disabled':disabled,
+  'header':header,
+  'listItem':listItem,
+  'onClick':onClick,
+  'eventKey':eventKey,
+  'href':href,
+  'target':target,
+}, props), children);
 
 
 typedef MenuItemType({dynamic key, bool header, bool divider, String href, String title,
@@ -467,60 +465,51 @@ MenuItemType MenuItem = ({key, header, divider, href: '#', title, target, onSele
       'disabled': disabled,
     }, props), children);
 
+typedef ModalType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                  dynamic title,
+                  MODAL_BACKDROPS backdrop,
+                  bool keyboard,
+                  bool closeButton,
+                  dynamic container,
+                  bool animation,
+                  Function onRequestHide,
+                  String dialogClassName,
+                  bool enforceFocus,
+                  Map props, dynamic children});
 
-/*
-const Modal = React.createClass({
+ModalType Modal = ({key, bsClass, bsStyle, bsSize,
+                   title, backdrop, keyboard, closeButton, container, animation,
+                   onRequestHide, dialogClassName, enforceFocus,
+                   props, children}) => raw.Modal_Raw(_mergeMaps({
+  'key': key,
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+  'title': title,
+  'backdrop': backdrop,
+  'keyboard': keyboard,
+  'closeButton': closeButton,
+  'container': container,
+  'animation': animation,
+  'onRequestHide': onRequestHide,
+  'dialogClassName': dialogClassName,
+  'enforceFocus': enforceFocus,
+}, props), children);
 
-  mixins: [BootstrapMixin, FadeMixin],
-
-  propTypes: {
-    title: React.PropTypes.node,
-    backdrop: React.PropTypes.oneOf(['static', true, false]),
-    keyboard: React.PropTypes.bool,
-    closeButton: React.PropTypes.bool,
-    container: React.PropTypes.object,
-    animation: React.PropTypes.bool,
-    onRequestHide: React.PropTypes.func.isRequired,
-    dialogClassName: React.PropTypes.string,
-    enforceFocus: React.PropTypes.bool
-  },
-
-  getDefaultProps() {
-    return {
-      bsClass: 'modal',
-      backdrop: true,
-      keyboard: true,
-      animation: true,
-      closeButton: true,
-      enforceFocus: true
-    };
-  },
- */
-
-typedef ModalType({Map props, dynamic children});
-
-ModalType Modal = ({props, children}) => raw.Modal_Raw(props, children);
-
-/*
-const ModalTrigger = React.createClass({
-  mixins: [OverlayMixin],
-
-  propTypes: {
-    modal: React.PropTypes.node.isRequired,
-    onBlur: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onMouseOut: React.PropTypes.func,
-    onMouseOver: React.PropTypes.func
-  },
-
- */
-
-
-typedef ModalTriggerType({Map props, dynamic children});
+typedef ModalTriggerType({ dynamic modal, Function onBlur, Function onFocus,
+                         Function onMouseOut, Function onMouseOver,
+                         Map props, dynamic children});
 
 ModalTriggerType ModalTrigger =
-    ({props, children}) => raw.ModalTrigger_Raw(props, children);
-
+    ({ modal, onBlur, onFocus, onMouseOut, onMouseOver,
+     props, children}) => raw.ModalTrigger_Raw(
+    _mergeMaps({
+      'modal': modal,
+      'onBlur': onBlur,
+      'onFocus': onFocus,
+      'onMouseOut': onMouseOut,
+      'onMouseOver': onMouseOver,
+    }, props), children);
 
 typedef NavType({dynamic key, CLASSES bsClass, NAV_STYLES bsStyle, SIZES bsSize,
                 String activeHref, dynamic activeKey, bool stacked, bool justified,
@@ -601,49 +590,31 @@ NavItemType NavItem = ({key, bsClass, bsStyle, bsSize, onSelect, active,
   'target': target,
 }, props), children);
 
+typedef OverlayTriggerType({String trigger, OVERLAY_TRIGGER_PLACEMENT placement, int delay,
+                           int delayShow, int delayHide, bool defaultOverlayShown, dynamic overlay,
+                           dynamic onBlur, OnClickHandler onClick, Function onFocus, Function onMouseEnter,
+                           Function onMouseLeave, int containerPadding, bool rootClose,
+                           Map props, dynamic children});
 
-/*
-const OverlayTrigger = React.createClass({
-  mixins: [OverlayMixin],
-
-  propTypes: {
-    trigger: React.PropTypes.oneOfType([
-      React.PropTypes.oneOf(['manual', 'click', 'hover', 'focus']),
-      React.PropTypes.arrayOf(React.PropTypes.oneOf(['click', 'hover', 'focus']))
-    ]),
-    placement: React.PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-    delay: React.PropTypes.number,
-    delayShow: React.PropTypes.number,
-    delayHide: React.PropTypes.number,
-    defaultOverlayShown: React.PropTypes.bool,
-    overlay: React.PropTypes.node.isRequired,
-    onBlur: React.PropTypes.func,
-    onClick: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onMouseEnter: React.PropTypes.func,
-    onMouseLeave: React.PropTypes.func,
-    containerPadding: React.PropTypes.number,
-    rootClose: React.PropTypes.bool
-  },
-
-  getDefaultProps() {
-    return {
-      placement: 'right',
-      trigger: ['hover', 'focus'],
-      containerPadding: 0
-    };
-  },
- */
-
-typedef OverlayTriggerType({Map props, dynamic children});
-
-OverlayTriggerType OverlayTrigger =
-    ({props, children}) => raw.OverlayTrigger_Raw(props, children);
-
-//typedef OverlayMixinType({Map props, dynamic children});
-//
-//OverlayMixinType OverlayMixin =
-//    ({props, children}) => raw.OverlayMixin_Raw(props, children);
+OverlayTriggerType OverlayTrigger = ({trigger: const ['hover', 'focus'], placement: OVERLAY_TRIGGER_PLACEMENT.right,
+                                     delay, delayShow, delayHide, defaultOverlayShown, overlay,
+                                     onBlur, onClick, onFocus, onMouseEnter, onMouseLeave, containerPadding: 0, rootClose,
+                                     props, children}) => raw.OverlayTrigger_Raw(_mergeMaps({
+  'trigger': trigger,
+  'placement': placement,
+  'delay': delay,
+  'delayShow': delayShow,
+  'delayHide': delayHide,
+  'defaultOverlayShown': defaultOverlayShown,
+  'overlay': overlay,
+  'onBlur': onBlur,
+  'onClick': onClick,
+  'onFocus': onFocus,
+  'onMouseEnter': onMouseEnter,
+  'onMouseLeave': onMouseLeave,
+  'containerPadding': containerPadding,
+  'rootClose': rootClose,
+}, props), children);
 
 typedef PageHeaderType({Map props, dynamic children});
 
