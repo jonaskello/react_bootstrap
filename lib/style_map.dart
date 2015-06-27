@@ -666,3 +666,18 @@ Map<CAROUSEL_DIRECTION, String> CAROUSEL_DIRECTION_MAP = {
   CAROUSEL_DIRECTION.prev: 'prev',
   CAROUSEL_DIRECTION.next: 'next',
 };
+
+enum LIST_GROUP_ITEM_STYLES {
+  danger,
+  info,
+  success,
+  warning
+}
+
+Map<LIST_GROUP_ITEM_STYLES, String> LIST_GROUP_ITEM_STYLES_MAP = {
+  LIST_GROUP_ITEM_STYLES.danger: 'danger',
+  LIST_GROUP_ITEM_STYLES.info: 'info',
+  LIST_GROUP_ITEM_STYLES.success: 'success',
+  LIST_GROUP_ITEM_STYLES.warning: 'warning',
+};
+

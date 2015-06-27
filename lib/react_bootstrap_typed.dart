@@ -345,7 +345,7 @@ GridType Grid = ({fluid, componentClass: 'div', props, children}) => raw
     _mergeMaps({'fluid': fluid, 'componentClass': componentClass}, props),
     children);
 
-typedef InputType({ String type, FORM_GROUP_SIZES bsSize, FORM_GROUP_STYLES bsStyle,
+typedef InputType({String type, FORM_GROUP_SIZES bsSize, FORM_GROUP_STYLES bsStyle,
                   dynamic label, dynamic help, dynamic addonBefore,
                   dynamic addonAfter, dynamic buttonBefore,
                   dynamic buttonAfter, bool hasFeedback, String id,
@@ -387,83 +387,65 @@ InterpolateType Interpolate = ({ component, format, unsafe,
   'unsafe':unsafe,
 }, props), children);
 
-/*
-const Jumbotron = React.createClass({
-  propTypes: {
-    componentClass: CustomPropTypes.elementType
-  },
-
-  getDefaultProps() {
-    return { componentClass: 'div' };
-  },
- */
-
-
-typedef JumbotronType({Map props, dynamic children});
+typedef JumbotronType({dynamic componentClass,
+                      Map props, dynamic children});
 
 JumbotronType Jumbotron =
-    ({props, children}) => raw.Jumbotron_Raw(props, children);
+    ({componentClass: "div", props, children}) => raw.Jumbotron_Raw(_mergeMaps({
+  'componentClass': componentClass
+},
+props), children);
 
-/*
-const Label = React.createClass({
-  mixins: [BootstrapMixin],
+typedef LabelType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                  Map props, dynamic children});
 
-  getDefaultProps() {
-    return {
-      bsClass: 'label',
-      bsStyle: 'default'
-    };
-  },
+LabelType Label = ({key, bsClass: CLASSES.label, bsStyle: STYLES.defaultStyle, bsSize, props, children}) => raw.Label_Raw(_mergeMaps({
+  'key': key,
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+}, props), children);
 
- */
-
-
-typedef LabelType({Map props, dynamic children});
-
-LabelType Label = ({props, children}) => raw.Label_Raw(props, children);
-
-
-/*
-ListGroup.propTypes = {
-  className: React.PropTypes.string,
-  id: React.PropTypes.string
-};
-
- */
-
-typedef ListGroupType({Map props, dynamic children});
+typedef ListGroupType({String className, String id, Map props, dynamic children});
 
 ListGroupType ListGroup =
-    ({props, children}) => raw.ListGroup_Raw(props, children);
+    ({className, id, props, children}) => raw.ListGroup_Raw(_mergeMaps({
+  'className': className,
+  'id': id,
+}, props), children);
 
-/*
-onst ListGroupItem = React.createClass({
-  mixins: [BootstrapMixin],
-
-  propTypes: {
-    bsStyle: React.PropTypes.oneOf(['danger', 'info', 'success', 'warning']),
-    className: React.PropTypes.string,
-    active: React.PropTypes.any,
-    disabled: React.PropTypes.any,
-    header: React.PropTypes.node,
-    listItem: React.PropTypes.bool,
-    onClick: React.PropTypes.func,
-    eventKey: React.PropTypes.any,
-    href: React.PropTypes.string,
-    target: React.PropTypes.string
-  },
-
-  getDefaultProps() {
-    return {
-      bsClass: 'list-group-item'
-    };
-  },
- */
-
-typedef ListGroupItemType({Map props, dynamic children});
+typedef ListGroupItemType({dynamic key, CLASSES bsClass, LIST_GROUP_ITEM_STYLES bsStyle, SIZES bsSize,
+                          String className,
+                          dynamic active,
+                          dynamic disabled,
+                          dynamic header,
+                          bool listItem,
+                          OnClickHandler onClick,
+                          dynamic eventKey,
+                          String href,
+                          String target,
+                          Map props, dynamic children});
 
 ListGroupItemType ListGroupItem =
-    ({props, children}) => raw.ListGroupItem_Raw(props, children);
+    ({key, bsClass: CLASSES.list_group_item, bsStyle, bsSize,
+     className, active, disabled, header, listItem,
+     onClick, eventKey, href, target,
+     props, children}) => raw.ListGroupItem_Raw(
+    _mergeMaps({
+      'key': key,
+      'bsClass': CLASSES_MAP[bsClass],
+      'bsStyle': LIST_GROUP_ITEM_STYLES_MAP[bsStyle],
+      'bsSize': SIZES_MAP[bsSize],
+      'className':className,
+      'active':active,
+      'disabled':disabled,
+      'header':header,
+      'listItem':listItem,
+      'onClick':onClick,
+      'eventKey':eventKey,
+      'href':href,
+      'target':target,
+    }, props), children);
 
 
 typedef MenuItemType({dynamic key, bool header, bool divider, String href, String title,
