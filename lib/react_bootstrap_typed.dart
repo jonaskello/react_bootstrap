@@ -377,26 +377,15 @@ InputType Input = ({type, bsSize, bsStyle,
   'value':value,
 }, props), children);
 
+typedef InterpolateType({dynamic component, String format, bool unsafe,
+                        Map props, dynamic children});
 
-/*
-const Interpolate = React.createClass({
-  displayName: 'Interpolate',
-
-  propTypes: {
-    component: React.PropTypes.node,
-    format: React.PropTypes.string,
-    unsafe: React.PropTypes.bool
-  },
-
-  getDefaultProps() {
-    return { component: 'span' };
-  },
- */
-
-typedef InterpolateType({Map props, dynamic children});
-
-InterpolateType Interpolate =
-    ({props, children}) => raw.Interpolate_Raw(props, children);
+InterpolateType Interpolate = ({ component, format, unsafe,
+                               props, children}) => raw.Interpolate_Raw(_mergeMaps({
+  'component':component,
+  'format':format,
+  'unsafe':unsafe,
+}, props), children);
 
 /*
 const Jumbotron = React.createClass({
