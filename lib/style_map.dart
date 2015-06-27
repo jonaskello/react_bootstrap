@@ -627,7 +627,7 @@ enum BUTTON_INPUT_TYPES {
   submit
 }
 
-Map<STYLES, String> BUTTON_INPUT_TYPES_MAP = {
+Map<BUTTON_INPUT_TYPES, String> BUTTON_INPUT_TYPES_MAP = {
   BUTTON_INPUT_TYPES.button: 'button',
   BUTTON_INPUT_TYPES.reset: 'reset',
   BUTTON_INPUT_TYPES.submit: 'submit',
@@ -639,7 +639,7 @@ enum BUTTON_INPUT_SIZES {
   large
 }
 
-Map<STYLES, String> BUTTON_INPUT_SIZES_MAP = {
+Map<BUTTON_INPUT_SIZES, String> BUTTON_INPUT_SIZES_MAP = {
   BUTTON_INPUT_SIZES.small: 'small',
   BUTTON_INPUT_SIZES.medium: 'medium',
   BUTTON_INPUT_SIZES.large: 'large',
@@ -651,8 +651,18 @@ enum BUTTON_INPUT_STYLES {
   error
 }
 
-Map<STYLES, String> BUTTON_INPUT_STYLES_MAP = {
+Map<BUTTON_INPUT_STYLES, String> BUTTON_INPUT_STYLES_MAP = {
   BUTTON_INPUT_STYLES.success: 'success',
   BUTTON_INPUT_STYLES.warning: 'warning',
   BUTTON_INPUT_STYLES.error: 'error',
+};
+
+enum CAROUSEL_DIRECTION {
+  prev,
+  next
+}
+
+Map<CAROUSEL_DIRECTION, String> CAROUSEL_DIRECTION_MAP = {
+  CAROUSEL_DIRECTION.prev: 'prev',
+  CAROUSEL_DIRECTION.next: 'next',
 };

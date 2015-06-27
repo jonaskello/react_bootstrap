@@ -8,8 +8,11 @@ JsObject _window = new JsObject.fromBrowserObject(context['window']);
 JsObject _react = _window['React'];
 JsObject _reactBootstrap = _window['ReactBootstrap'];
 
-Map _mergeMaps(Map addTo, Map addFrom) {
+Map _mergeMaps(Map addTo, Map addFrom, [Map addFrom2, Map addFrom3, Map addFrom4]) {
   if (addFrom != null) addTo.addAll(addFrom);
+  if (addFrom2 != null) addTo.addAll(addFrom2);
+  if (addFrom3 != null) addTo.addAll(addFrom3);
+  if (addFrom4 != null) addTo.addAll(addFrom4);
   return addTo;
 }
 
@@ -185,44 +188,47 @@ CollapsibleNavType CollapsibleNav = ({key, bsClass, bsStyle, bsSize,
 }, props), children);
 
 
-/*
-const Carousel = React.createClass({
-  mixins: [BootstrapMixin],
+typedef CarouselType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                     bool slide,
+                     bool indicators,
+                     int interval,
+                     bool controls,
+                     bool pauseOnHover,
+                     bool wrap,
+                     OnSelectHandler onSelect,
+                     Function onSlideEnd,
+                     int activeIndex,
+                     int defaultActiveIndex,
+                     CAROUSEL_DIRECTION direction,
+                     dynamic prevIcon,
+                     dynamic nextIcon,
+                     Map props, dynamic children});
 
-  propTypes: {
-    slide: React.PropTypes.bool,
-    indicators: React.PropTypes.bool,
-    interval: React.PropTypes.number,
-    controls: React.PropTypes.bool,
-    pauseOnHover: React.PropTypes.bool,
-    wrap: React.PropTypes.bool,
-    onSelect: React.PropTypes.func,
-    onSlideEnd: React.PropTypes.func,
-    activeIndex: React.PropTypes.number,
-    defaultActiveIndex: React.PropTypes.number,
-    direction: React.PropTypes.oneOf(['prev', 'next']),
-    prevIcon: React.PropTypes.node,
-    nextIcon: React.PropTypes.node
-  },
+CarouselType Carousel = ({key, bsClass, bsStyle, bsSize,
+                         slide: true, indicators: true, interval: 5000, controls: true, pauseOnHover: true, wrap: true,
+                         onSelect, onSlideEnd, activeIndex, defaultActiveIndex, direction,
+                         prevIcon, nextIcon,
+                         props, children}) => raw.Carousel_Raw(_mergeMaps({
+  'key': key,
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+  'slide':slide,
+  'indicators':indicators,
+  'interval':interval,
+  'controls':controls,
+  'pauseOnHover':pauseOnHover,
+  'wrap':wrap,
+  'onSelect':onSelect,
+  'onSlideEnd':onSlideEnd,
+  'activeIndex':activeIndex,
+  'defaultActiveIndex':defaultActiveIndex,
+  'direction': CAROUSEL_DIRECTION_MAP[direction],
 
-  getDefaultProps() {
-    return {
-      slide: true,
-      interval: 5000,
-      pauseOnHover: true,
-      wrap: true,
-      indicators: true,
-      controls: true,
-      prevIcon: <Glyphicon glyph="chevron-left" />,
-      nextIcon: <Glyphicon glyph="chevron-right" />
-    };
-  },
- */
-
-typedef CarouselType({Map props, dynamic children});
-
-CarouselType Carousel =
-    ({props, children}) => raw.Carousel_Raw(props, children);
+},
+props,
+prevIcon == null ? null : {'prevIcon':prevIcon},
+nextIcon == null ? null : {'nextIcon':nextIcon}), children);
 
 
 /*
