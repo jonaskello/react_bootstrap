@@ -739,177 +739,128 @@ typedef RowType({dynamic componentClass, Map props, dynamic children});
 RowType Row = ({componentClass: 'div', props, children}) => raw.Row_Raw(
     _mergeMaps({'componentClass': componentClass}, props), children);
 
-
-/*
-const SplitButton = React.createClass({
-  mixins: [BootstrapMixin, DropdownStateMixin],
-
-  propTypes: {
-    pullRight:     React.PropTypes.bool,
-    title:         React.PropTypes.node,
-    href:          React.PropTypes.string,
-    id:            React.PropTypes.string,
-    target:        React.PropTypes.string,
-    dropdownTitle: React.PropTypes.node,
-    dropup:        React.PropTypes.bool,
-    onClick:       React.PropTypes.func,
-    onSelect:      React.PropTypes.func,
-    disabled:      React.PropTypes.bool,
-    className:     React.PropTypes.string,
-    children:      React.PropTypes.node
-  },
-
-  getDefaultProps() {
-    return {
-      dropdownTitle: 'Toggle dropdown'
-    };
-  },
- */
-
 typedef SplitButtonType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                        bool pullRight, dynamic title, String href, String id, String target,
+                        dynamic dropdownTitle, bool dropup, OnClickHandler onClick,
+                        OnSelectHandler onSelect, bool disabled, String className,
                         Map props, dynamic children});
 
-SplitButtonType SplitButton =
-    ({key, bsClass, bsStyle, bsSize,
-     props, children}) => raw.SplitButton_Raw(_mergeMaps({
+SplitButtonType SplitButton = ({key, bsClass, bsStyle, bsSize,
+                               pullRight, title, href, id, target, dropdownTitle: 'Toggle dropdown',
+                               dropup, onClick, onSelect, disabled, className,
+                               props, children}) => raw.SplitButton_Raw(_mergeMaps({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
   'bsSize': SIZES_MAP[bsSize],
+  'pullRight': pullRight,
+  'title': title,
+  'href': href,
+  'id': id,
+  'target': target,
+  'dropdownTitle': dropdownTitle,
+  'dropup': dropup,
+  'onClick': onClick,
+  'onSelect': onSelect,
+  'disabled': disabled,
+  'className': className,
+
 }, props), children);
 
-/*
-const SubNav = React.createClass({
-  mixins: [BootstrapMixin],
-
-  propTypes: {
-    onSelect: React.PropTypes.func,
-    active: React.PropTypes.bool,
-    activeHref: React.PropTypes.string,
-    activeKey: React.PropTypes.any,
-    disabled: React.PropTypes.bool,
-    eventKey: React.PropTypes.any,
-    href: React.PropTypes.string,
-    title: React.PropTypes.string,
-    text: React.PropTypes.node,
-    target: React.PropTypes.string
-  },
-
-  getDefaultProps() {
-    return {
-      bsClass: 'nav'
-    };
-  }, */
-
 typedef SubNavType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                   OnSelectHandler onSelect, bool active, String activeHref,
+                   dynamic activeKey, bool disabled, dynamic eventKey,
+                   String href, String title, dynamic text, String target,
                    Map props, dynamic children});
 
-SubNavType SubNav = ({key, bsClass, bsStyle, bsSize,
+SubNavType SubNav = ({key, bsClass: CLASSES.nav, bsStyle, bsSize,
+                     onSelect, active, activeHref, activeKey,
+                     disabled, eventKey, href, title,
+                     text, target,
                      props, children}) => raw.SubNav_Raw(_mergeMaps({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
   'bsSize': SIZES_MAP[bsSize],
+  'onSelect': onSelect,
+  'active': active,
+  'activeHref': activeHref,
+  'activeKey': activeKey,
+  'disabled': disabled,
+  'eventKey': eventKey,
+  'href': href,
+  'title': title,
+  'text': text,
+  'target': target,
 }, props), children);
 
-/*
-const TabPane = React.createClass({
-  propTypes: {
-    active:          React.PropTypes.bool,
-    animation:       React.PropTypes.bool,
-    onAnimateOutEnd: React.PropTypes.func,
-    disabled:        React.PropTypes.bool
-  },
+typedef TabPaneType({bool active, bool animation,
+                    Function onAnimateOutEnd, bool disabled,
+                    Map props, dynamic children});
 
-  getDefaultProps() {
-    return {
-      animation: true
-    };
-  },
- */
+TabPaneType TabPane = ({ active, animation: true,
+                       onAnimateOutEnd, disabled,
+                       props, children}) => raw.TabPane_Raw(
+    _mergeMaps({
+      'active': active,
+      'animation': animation,
+      'onAnimateOutEnd': onAnimateOutEnd,
+      'disabled': disabled,
+    }, props), children);
 
-
-typedef TabPaneType({Map props, dynamic children});
-
-TabPaneType TabPane = ({props, children}) => raw.TabPane_Raw(props, children);
-
-/*
-const TabbedArea = React.createClass({
-  mixins: [BootstrapMixin],
-
-  propTypes: {
-    activeKey: React.PropTypes.any,
-    defaultActiveKey: React.PropTypes.any,
-    bsStyle: React.PropTypes.oneOf(['tabs', 'pills']),
-    animation: React.PropTypes.bool,
-    id: React.PropTypes.string,
-    onSelect: React.PropTypes.func
-  },
-
-  getDefaultProps() {
-    return {
-      bsStyle: 'tabs',
-      animation: true
-    };
-  },
-
- */
-
-
-typedef TabbedAreaType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+typedef TabbedAreaType({dynamic key, CLASSES bsClass, TABBED_AREA_STYLES bsStyle, SIZES bsSize,
+                       dynamic activeKey,
+                       dynamic defaultActiveKey,
+                       bool animation,
+                       String id,
+                       Function onSelect,
                        Map props, dynamic children});
 
-TabbedAreaType TabbedArea = ({key, bsClass, bsStyle, bsSize,
+TabbedAreaType TabbedArea = ({key, bsClass, bsStyle: TABBED_AREA_STYLES.tabs, bsSize,
+                             activeKey, defaultActiveKey, animation: true, id, onSelect,
                              props, children}) => raw.TabbedArea_Raw(_mergeMaps({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
   'bsSize': SIZES_MAP[bsSize],
+  'activeKey': activeKey,
+  'defaultActiveKey': defaultActiveKey,
+  'animation': animation,
+  'id': id,
+  'onSelect': onSelect,
 }, props), children);
 
-/*
-const Table = React.createClass({
-  propTypes: {
-    striped: React.PropTypes.bool,
-    bordered: React.PropTypes.bool,
-    condensed: React.PropTypes.bool,
-    hover: React.PropTypes.bool,
-    responsive: React.PropTypes.bool
-  },
-*/
+typedef TableType({ bool striped, bool bordered, bool condensed,
+                  bool hover, bool responsive,
+                  Map props, dynamic children});
 
-typedef TableType({Map props, dynamic children});
+TableType Table = ({striped, bordered, condensed,
+                   hover, responsive,
+                   props, children}) => raw.Table_Raw(
+    _mergeMaps({
+      'striped': striped,
+      'bordered': bordered,
+      'condensed': condensed,
+      'hover': hover,
+      'responsive': responsive,
+    },
 
-TableType Table = ({props, children}) => raw.Table_Raw(props, children);
-
-
-/*
-const Thumbnail = React.createClass({
-  mixins: [BootstrapMixin],
-
-  propTypes: {
-    alt: React.PropTypes.string,
-    href: React.PropTypes.string,
-    src: React.PropTypes.string
-  },
-
-  getDefaultProps() {
-    return {
-      bsClass: 'thumbnail'
-    };
-  },
-
-*/
+    props), children);
 
 typedef ThumbnailType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                      String alt, String href, String src,
                       Map props, dynamic children});
 
-ThumbnailType Thumbnail = ({key, bsClass, bsStyle, bsSize,
+ThumbnailType Thumbnail = ({key, bsClass: CLASSES.thumbnail, bsStyle, bsSize,
+                           alt, href, src,
                            props, children}) => raw.Thumbnail_Raw(_mergeMaps({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
   'bsSize': SIZES_MAP[bsSize],
+  'alt': alt,
+  'href': href,
+  'src': src,
 }, props), children);
 
 typedef TooltipType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,

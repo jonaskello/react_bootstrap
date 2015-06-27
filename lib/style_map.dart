@@ -706,3 +706,13 @@ Map<PLACEMENTS, String> PLACEMENTS_MAP = {
   PLACEMENTS.bottom: 'bottom',
   PLACEMENTS.left: 'left',
 };
+
+enum TABBED_AREA_STYLES {
+  tabs,
+  pills,
+}
+
+Map<TABBED_AREA_STYLES, String> TABBED_AREA_STYLES_MAP = {
+  TABBED_AREA_STYLES.tabs: 'tabs',
+  TABBED_AREA_STYLES.pills: 'pills',
+};
