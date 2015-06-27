@@ -72,8 +72,8 @@ BadgeType Badge = ({pullRight, props, children}) => raw.Badge_Raw(
       'pullRight': pullRight
     }, props), children);
 
-typedef ButtonType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize, bool active,
-                   bool disabled, bool block, bool navItem, bool navDropdown,
+typedef ButtonType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                   bool active, bool disabled, bool block, bool navItem, bool navDropdown,
                    dynamic componentClass, String href, String target, Map style,
                    OnClickHandler onClick, Map props, dynamic children});
 
@@ -157,32 +157,32 @@ ButtonToolbarType ButtonToolbar = ({bsClass: CLASSES.button_toolbar,
   'bsSize': SIZES_MAP[bsSize],
 }, props), children);
 
+typedef CollapsibleNavType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                           bool defaultExpanded,
+                           bool expanded,
+                           OnSelectHandler onSelect,
+                           String activeHref,
+                           dynamic activeKey,
+                           bool collapsible,
+                           dynamic eventKey,
+                           Map props, dynamic children});
 
-/*
-const CollapsibleNav = React.createClass({
-  mixins: [BootstrapMixin, CollapsibleMixin],
-
-  propTypes: {
-    onSelect: React.PropTypes.func,
-    activeHref: React.PropTypes.string,
-    activeKey: React.PropTypes.any,
-    collapsible: React.PropTypes.bool,
-    expanded: React.PropTypes.bool,
-    eventKey: React.PropTypes.any
-  },
-
-  const CollapsibleMixin = {
-
-  propTypes: {
-    defaultExpanded: React.PropTypes.bool,
-    expanded: React.PropTypes.bool
-  },
- */
-
-typedef CollapsibleNavType({Map props, dynamic children});
-
-CollapsibleNavType CollapsibleNav =
-    ({props, children}) => raw.CollapsibleNav_Raw(props, children);
+CollapsibleNavType CollapsibleNav = ({key, bsClass, bsStyle, bsSize,
+                                     defaultExpanded, expanded, onSelect, activeHref,
+                                     activeKey, collapsible, eventKey,
+                                     props, children}) => raw.CollapsibleNav_Raw(_mergeMaps({
+  'key': key,
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+  'defaultExpanded':defaultExpanded,
+  'expanded':expanded,
+  'onSelect':onSelect,
+  'activeHref':activeHref,
+  'activeKey':activeKey,
+  'collapsible':collapsible,
+  'eventKey':eventKey,
+}, props), children);
 
 
 /*
