@@ -621,177 +621,124 @@ typedef PageHeaderType({Map props, dynamic children});
 PageHeaderType PageHeader =
     ({props, children}) => raw.PageHeader_Raw(props, children);
 
+typedef PageItemType({String href, String target, String title, bool disabled,
+                     bool previous, bool next, OnSelectHandler onSelect, dynamic eventKey,
+                     Map props, dynamic children});
 
-/*
-const PageItem = React.createClass({
+PageItemType PageItem = ({ href: '#', target, title, disabled, previous,
+                         next, onSelect, eventKey,
+                         props, children}) => raw.PageItem_Raw(_mergeMaps({
+  'href': href,
+  'target': target,
+  'title': title,
+  'disabled': disabled,
+  'previous': previous,
+  'next': next,
+  'onSelect': onSelect,
+  'eventKey': eventKey,
+}, props), children);
 
-  propTypes: {
-    href: React.PropTypes.string,
-    target: React.PropTypes.string,
-    title: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-    previous: React.PropTypes.bool,
-    next: React.PropTypes.bool,
-    onSelect: React.PropTypes.func,
-    eventKey: React.PropTypes.any
-  },
+typedef PagerType({OnSelectHandler onSelect, Map props, dynamic children});
 
-  getDefaultProps() {
-    return {
-      href: '#'
-    };
-  },
- */
+PagerType Pager = ({onSelect, props, children}) => raw.Pager_Raw(_mergeMaps(
+    { 'onSelect':onSelect },
+    props), children);
 
-typedef PageItemType({Map props, dynamic children});
+typedef PanelType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                  bool defaultExpanded, bool expanded, bool collapsible, OnSelectHandler onSelect,
+                  dynamic header, String id, dynamic footer, dynamic eventKey,
+                  Map props, dynamic children});
 
-PageItemType PageItem =
-    ({props, children}) => raw.PageItem_Raw(props, children);
+PanelType Panel = ({key, bsClass: CLASSES.panel, bsStyle: STYLES.defaultStyle, bsSize,
+                   defaultExpanded, expanded, collapsible,
+                   onSelect, header, id, footer, eventKey,
+                   props, children}) => raw.Panel_Raw(_mergeMaps({
+  'key': key,
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+  'defaultExpanded': defaultExpanded,
+  'expanded': expanded,
+  'collapsible': collapsible,
+  'onSelect': onSelect,
+  'header': header,
+  'id': id,
+  'footer': footer,
+  'eventKey': eventKey,
+}, props), children);
 
-/*
-const Pager = React.createClass({
+typedef PanelGroupType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                       bool accordion,
+                       dynamic activeKey,
+                       String className,
+                       dynamic defaultActiveKey,
+                       OnSelectHandler onSelect,
+                       Map props, dynamic children});
 
-  propTypes: {
-    onSelect: React.PropTypes.func
-  },
+PanelGroupType PanelGroup = ({key, bsClass: CLASSES.panel_group, bsStyle, bsSize,
+                             accordion, activeKey, className, defaultActiveKey, onSelect,
+                             props, children}) => raw.PanelGroup_Raw(_mergeMaps({
+  'key': key,
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+  'accordion': accordion,
+  'activeKey': activeKey,
+  'className': className,
+  'defaultActiveKey': defaultActiveKey,
+  'onSelect': onSelect,
+}, props), children);
 
- */
+typedef PopoverType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                    PLACEMENTS placement, int positionLeft, int positionTop,
+                    dynamic arrowOffsetLeft, dynamic arrowOffsetTop,
+                    dynamic title, bool animation,
+                    Map props, dynamic children});
 
+PopoverType Popover = ({key, bsClass, bsStyle, bsSize,
+                       placement: PLACEMENTS.right, positionLeft,
+                       positionTop, arrowOffsetLeft, arrowOffsetTop,
+                       title, animation: true,
+                       props, children}) => raw.Popover_Raw(_mergeMaps({
+  'key': key,
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+}, props), children);
 
-typedef PagerType({Map props, dynamic children});
-
-PagerType Pager = ({props, children}) => raw.Pager_Raw(props, children);
-
-
-/*
-const Panel = React.createClass({
-  mixins: [BootstrapMixin, CollapsibleMixin],
-
-  propTypes: {
-    collapsible: React.PropTypes.bool,
-    onSelect: React.PropTypes.func,
-    header: React.PropTypes.node,
-    id: React.PropTypes.string,
-    footer: React.PropTypes.node,
-    eventKey: React.PropTypes.any
-  },
-
-  getDefaultProps() {
-    return {
-      bsClass: 'panel',
-      bsStyle: 'default'
-    };
-  },
- */
-
-typedef PanelType({Map props, dynamic children});
-
-PanelType Panel = ({props, children}) => raw.Panel_Raw(props, children);
-
-
-/*
-const PanelGroup = React.createClass({
-  mixins: [BootstrapMixin],
-
-  propTypes: {
-    accordion: React.PropTypes.bool,
-    activeKey: React.PropTypes.any,
-    className: React.PropTypes.string,
-    children: React.PropTypes.node,
-    defaultActiveKey: React.PropTypes.any,
-    onSelect: React.PropTypes.func
-  },
-
-  getDefaultProps() {
-    return {
-      bsClass: 'panel-group'
-    };
-  },
-
- */
-
-typedef PanelGroupType({Map props, dynamic children});
-
-PanelGroupType PanelGroup =
-    ({props, children}) => raw.PanelGroup_Raw(props, children);
-
-
-/*
-const Popover = React.createClass({
-  mixins: [BootstrapMixin, FadeMixin],
-
-  propTypes: {
-    placement: React.PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-    positionLeft: React.PropTypes.number,
-    positionTop: React.PropTypes.number,
-    arrowOffsetLeft: React.PropTypes.oneOfType([
-      React.PropTypes.number, React.PropTypes.string
-    ]),
-    arrowOffsetTop: React.PropTypes.oneOfType([
-      React.PropTypes.number, React.PropTypes.string
-    ]),
-    title: React.PropTypes.node,
-    animation: React.PropTypes.bool
-  },
-
-  getDefaultProps() {
-    return {
-      placement: 'right',
-      animation: true
-    };
-  },
- */
-
-
-typedef PopoverType({Map props, dynamic children});
-
-PopoverType Popover = ({props, children}) => raw.Popover_Raw(props, children);
-
-
-/*
-const ProgressBar = React.createClass({
-  propTypes: {
-    min: PropTypes.number,
-    now: PropTypes.number,
-    max: PropTypes.number,
-    label: PropTypes.node,
-    srOnly: PropTypes.bool,
-    striped: PropTypes.bool,
-    active: PropTypes.bool,
-    children: onlyProgressBar,
-    className: React.PropTypes.string,
-    interpolateClass: PropTypes.node,
-    isChild: PropTypes.bool
-  },
-
-  mixins: [BootstrapMixin],
-
-  getDefaultProps() {
-    return {
-      bsClass: 'progress-bar',
-      min: 0,
-      max: 100
-    };
-  },
- */
-
-
-typedef ProgressBarType({Map props, dynamic children});
+typedef ProgressBarType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                        int min, int now, int max, dynamic label,
+                        bool srOnly, bool striped, bool active, String className,
+                        dynamic interpolateClass, bool isChild,
+                        Map props, dynamic children});
 
 ProgressBarType ProgressBar =
-    ({props, children}) => raw.ProgressBar_Raw(props, children);
-
+    ({key, bsClass: CLASSES.progress_bar, bsStyle, bsSize,
+     min: 0, now, max: 100, label,
+     srOnly, striped, active, className,
+     interpolateClass, isChild,
+     props, children}) => raw.ProgressBar_Raw(_mergeMaps({
+  'key': key,
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+  'min': min,
+  'now': now,
+  'max': max,
+  'label': label,
+  'srOnly': srOnly,
+  'striped': striped,
+  'active': active,
+  'className': className,
+  'interpolateClass': interpolateClass,
+  'isChild': isChild,
+}, props), children);
 
 typedef RowType({dynamic componentClass, Map props, dynamic children});
 
 RowType Row = ({componentClass: 'div', props, children}) => raw.Row_Raw(
     _mergeMaps({'componentClass': componentClass}, props), children);
 
-
-//typedef SafeAnchorType({Map props, dynamic children});
-//
-//SafeAnchorType SafeAnchor =
-//    ({props, children}) => raw.SafeAnchor_Raw(props, children);
 
 /*
 const SplitButton = React.createClass({
@@ -819,10 +766,17 @@ const SplitButton = React.createClass({
   },
  */
 
-typedef SplitButtonType({Map props, dynamic children});
+typedef SplitButtonType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                        Map props, dynamic children});
 
 SplitButtonType SplitButton =
-    ({props, children}) => raw.SplitButton_Raw(props, children);
+    ({key, bsClass, bsStyle, bsSize,
+     props, children}) => raw.SplitButton_Raw(_mergeMaps({
+  'key': key,
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+}, props), children);
 
 /*
 const SubNav = React.createClass({
@@ -847,9 +801,16 @@ const SubNav = React.createClass({
     };
   }, */
 
-typedef SubNavType({Map props, dynamic children});
+typedef SubNavType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                   Map props, dynamic children});
 
-SubNavType SubNav = ({props, children}) => raw.SubNav_Raw(props, children);
+SubNavType SubNav = ({key, bsClass, bsStyle, bsSize,
+                     props, children}) => raw.SubNav_Raw(_mergeMaps({
+  'key': key,
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+}, props), children);
 
 /*
 const TabPane = React.createClass({
@@ -895,10 +856,16 @@ const TabbedArea = React.createClass({
  */
 
 
-typedef TabbedAreaType({Map props, dynamic children});
+typedef TabbedAreaType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                       Map props, dynamic children});
 
-TabbedAreaType TabbedArea =
-    ({props, children}) => raw.TabbedArea_Raw(props, children);
+TabbedAreaType TabbedArea = ({key, bsClass, bsStyle, bsSize,
+                             props, children}) => raw.TabbedArea_Raw(_mergeMaps({
+  'key': key,
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+}, props), children);
 
 /*
 const Table = React.createClass({
@@ -934,10 +901,16 @@ const Thumbnail = React.createClass({
 
 */
 
-typedef ThumbnailType({Map props, dynamic children});
+typedef ThumbnailType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                      Map props, dynamic children});
 
-ThumbnailType Thumbnail =
-    ({props, children}) => raw.Thumbnail_Raw(props, children);
+ThumbnailType Thumbnail = ({key, bsClass, bsStyle, bsSize,
+                           props, children}) => raw.Thumbnail_Raw(_mergeMaps({
+  'key': key,
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+}, props), children);
 
 typedef TooltipType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
                     PLACEMENTS placement, int positionLeft, int positionTop,
@@ -960,18 +933,13 @@ TooltipType Tooltip = ({key, bsClass, bsStyle, bsSize,
   'animation': animation,
 }, props), children);
 
+typedef WellType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
+                 Map props, dynamic children});
 
-/*
-const Well = React.createClass({
-  mixins: [BootstrapMixin],
-
-  getDefaultProps() {
-    return {
-      bsClass: 'well'
-    };
-  },
- */
-
-typedef WellType({Map props, dynamic children});
-
-WellType Well = ({props, children}) => raw.Well_Raw(props, children);
+WellType Well = ({key, bsClass: CLASSES.well, bsStyle, bsSize,
+                 props, children}) => raw.Well_Raw(_mergeMaps({
+  'key': key,
+  'bsClass': CLASSES_MAP[bsClass],
+  'bsStyle': STYLES_MAP[bsStyle],
+  'bsSize': SIZES_MAP[bsSize],
+}, props), children);
