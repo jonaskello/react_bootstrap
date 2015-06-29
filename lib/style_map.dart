@@ -86,13 +86,13 @@ Map<SIZES, String> SIZES_MAP = {
 };
 
 enum NAV_STYLES {
+  pills,
   tabs,
-  pills
 }
 
 Map<NAV_STYLES, String> NAV_STYLES_MAP = {
+  NAV_STYLES.pills: 'pills',
   NAV_STYLES.tabs: 'tabs',
-  NAV_STYLES.pills: 'pills'
 };
 
 
