@@ -8,12 +8,18 @@ JsObject _window = new JsObject.fromBrowserObject(context['window']);
 JsObject _react = _window['React'];
 JsObject _reactBootstrap = _window['ReactBootstrap'];
 
-Map _mergeMaps(Map addTo, Map addFrom, [Map addFrom2, Map addFrom3, Map addFrom4]) {
+Map _rawMap(Map addTo, Map addFrom, [Map addFrom2, Map addFrom3, Map addFrom4]) {
   if (addFrom != null) addTo.addAll(addFrom);
   if (addFrom2 != null) addTo.addAll(addFrom2);
   if (addFrom3 != null) addTo.addAll(addFrom3);
   if (addFrom4 != null) addTo.addAll(addFrom4);
-  return addTo;
+  // Remove all keys that have null values
+  Map keep = new Map();
+  addTo.forEach((k, v) {
+    if (v != null) keep[k] = v;
+  });
+
+  return keep;
 }
 
 typedef OnClickHandler(event, String key);
@@ -28,7 +34,7 @@ typedef AccordionType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSiz
 
 AccordionType Accordion = ({key, bsClass, bsStyle, bsSize,
                            accordion: true, activeKey, className, defaultActiveKey,
-                           onSelect, props, children}) => raw.Accordion_Raw(_mergeMaps({
+                           onSelect, props, children}) => raw.Accordion_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -44,7 +50,7 @@ typedef AffixType({ int offset, int offsetTop, int offsetBottom,
                   Map props, dynamic children});
 
 AffixType Affix = ({offset, offsetTop, offsetBottom, props, children}) => raw.Affix_Raw(
-    _mergeMaps({
+    _rawMap({
       'offset':offset,
       'offsetTop':offsetTop,
       'offsetBottom':offsetBottom,
@@ -58,7 +64,7 @@ typedef AlertType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
 
 AlertType Alert = ({ key, bsClass, bsStyle, bsSize,
                    onDismiss, dismissAfter, closeLabel,
-                   props, children}) => raw.Alert_Raw(_mergeMaps({
+                   props, children}) => raw.Alert_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -71,7 +77,7 @@ AlertType Alert = ({ key, bsClass, bsStyle, bsSize,
 typedef BadgeType({bool pullRight, Map props, dynamic children});
 
 BadgeType Badge = ({pullRight, props, children}) => raw.Badge_Raw(
-    _mergeMaps({
+    _rawMap({
       'pullRight': pullRight
     }, props), children);
 
@@ -82,7 +88,7 @@ typedef ButtonType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
 
 ButtonType Button = ({key, bsClass: CLASSES.button, bsStyle: STYLES.defaultStyle,
                      bsSize, active, disabled, block, navItem, navDropdown, componentClass, href,
-                     target, style, onClick, props, children}) => raw.Button_Raw(_mergeMaps({
+                     target, style, onClick, props, children}) => raw.Button_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -107,7 +113,7 @@ typedef ButtonGroupType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsS
 ButtonGroupType ButtonGroup =
     ({key, bsClass, bsStyle, bsSize,
      vertical, justified, block,
-     props, children}) => raw.ButtonGroup_Raw(_mergeMaps({
+     props, children}) => raw.ButtonGroup_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -129,7 +135,7 @@ ButtonInputType ButtonInput = ({type, bsSize, bsStyle,
                                label, help, addonBefore, addonAfter, buttonBefore, buttonAfter,
                                hasFeedback, id, groupClassName, wrapperClassName, labelClassName,
                                multiple, disabled, value,
-                               props, children}) => raw.ButtonInput_Raw(_mergeMaps({
+                               props, children}) => raw.ButtonInput_Raw(_rawMap({
   'type':BUTTON_INPUT_TYPES_MAP[type],
   'bsSize':FORM_GROUP_SIZES_MAP[bsSize],
   'bsStyle':FORM_GROUP_STYLES_MAP[bsStyle],
@@ -154,7 +160,7 @@ typedef ButtonToolbarType({CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
 
 ButtonToolbarType ButtonToolbar = ({bsClass: CLASSES.button_toolbar,
                                    bsStyle, bsSize, props, children}) => raw
-.ButtonToolbar_Raw(_mergeMaps({
+.ButtonToolbar_Raw(_rawMap({
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
   'bsSize': SIZES_MAP[bsSize],
@@ -173,7 +179,7 @@ typedef CollapsibleNavType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES 
 CollapsibleNavType CollapsibleNav = ({key, bsClass, bsStyle, bsSize,
                                      defaultExpanded, expanded, onSelect, activeHref,
                                      activeKey, collapsible, eventKey,
-                                     props, children}) => raw.CollapsibleNav_Raw(_mergeMaps({
+                                     props, children}) => raw.CollapsibleNav_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -208,7 +214,7 @@ CarouselType Carousel = ({key, bsClass, bsStyle, bsSize,
                          slide: true, indicators: true, interval: 5000, controls: true, pauseOnHover: true, wrap: true,
                          onSelect, onSlideEnd, activeIndex, defaultActiveIndex, direction,
                          prevIcon, nextIcon,
-                         props, children}) => raw.Carousel_Raw(_mergeMaps({
+                         props, children}) => raw.Carousel_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -237,7 +243,7 @@ typedef CarouselItemType({ CAROUSEL_DIRECTION direction, bool animation, Functio
 CarouselItemType CarouselItem = ({ direction,
                                  animation: true, onAnimateOutEnd, active, animateIn, animateOut,
                                  caption, index, props, children}) => raw.CarouselItem_Raw(
-    _mergeMaps({
+    _rawMap({
       'direction': direction,
       'animation': animation,
       'onAnimateOutEnd': onAnimateOutEnd,
@@ -255,7 +261,7 @@ typedef ColType({dynamic key, int xs, int sm, int md, int lg, int xsOffset, int 
 
 ColType Col = ({key, xs, sm, md, lg, xsOffset, smOffset, mdOffset, lgOffset, xsPush,
                smPush, mdPush, lgPush, xsPull, smPull, mdPull, lgPull,
-               componentClass: 'div', props, children}) => raw.Col_Raw(_mergeMaps({
+               componentClass: 'div', props, children}) => raw.Col_Raw(_rawMap({
   'key': key,
   'xs': xs,
   'sm': sm,
@@ -284,7 +290,7 @@ typedef DropdownButtonType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES 
 
 DropdownButtonType DropdownButton = ({key, bsClass: CLASSES.button, bsStyle, bsSize,
                                      pullRight, dropup, title, href, onClick, onSelect, navItem, noCaret,
-                                     buttonClassName, props, children}) => raw.DropdownButton_Raw(_mergeMaps({
+                                     buttonClassName, props, children}) => raw.DropdownButton_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -305,7 +311,7 @@ typedef DropdownMenuType({bool pullRight, OnSelectHandler onSelect,
                          Map props, dynamic children});
 
 DropdownMenuType DropdownMenu = ({ pullRight, onSelect,
-                                 props, children}) => raw.DropdownMenu_Raw(_mergeMaps({
+                                 props, children}) => raw.DropdownMenu_Raw(_rawMap({
   'pullRight':pullRight,
   'onSelect':onSelect
 }, props), children);
@@ -316,7 +322,7 @@ typedef FormGroupType({ bool standalone, bool hasFeedback, FORM_GROUP_SIZES bsSi
 
 FormGroupType FormGroup = ({standalone: false, hasFeedback, bsSize,
                            bsStyle, groupClassName,
-                           props, children}) => raw.FormControls_Raw(_mergeMaps({
+                           props, children}) => raw.FormControls_Raw(_rawMap({
   'standalone': standalone,
   'hasFeedback': hasFeedback,
   'bsSize': bsSize,
@@ -330,20 +336,19 @@ SIZES bsSize, Map props, dynamic children});
 
 GlyphiconType Glyphicon = (glyph,
                            {bsClass: 'glyphicon', bsStyle, bsSize, props, children}) => raw
-.Glyphicon_Raw(_mergeMaps({
+.Glyphicon_Raw(_rawMap({
   'glyph': GLYPHS_MAP[glyph],
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
   'bsSize': SIZES_MAP[bsSize],
 }, props), children);
 
-typedef GridType(
-    {bool fluid, dynamic componentClass, Map props, dynamic children});
+typedef GridType({bool fluid, dynamic componentClass, Map props, dynamic children});
 
 GridType Grid = ({fluid, componentClass: 'div', props, children}) => raw
-.Grid_Raw(
-    _mergeMaps({'fluid': fluid, 'componentClass': componentClass}, props),
-    children);
+.Grid_Raw(_rawMap({
+  'fluid': fluid, 'componentClass': componentClass
+}, props), children);
 
 typedef InputType({String type, FORM_GROUP_SIZES bsSize, FORM_GROUP_STYLES bsStyle,
                   dynamic label, dynamic help, dynamic addonBefore,
@@ -357,7 +362,7 @@ InputType Input = ({type, bsSize, bsStyle,
                    label, help, addonBefore, addonAfter, buttonBefore, buttonAfter,
                    hasFeedback, id, groupClassName, wrapperClassName, labelClassName,
                    multiple, disabled, value,
-                   props, children}) => raw.Input_Raw(_mergeMaps({
+                   props, children}) => raw.Input_Raw(_rawMap({
   'type':type,
   'bsSize':FORM_GROUP_SIZES_MAP[bsSize],
   'bsStyle':FORM_GROUP_STYLES_MAP[bsStyle],
@@ -381,7 +386,7 @@ typedef InterpolateType({dynamic component, String format, bool unsafe,
                         Map props, dynamic children});
 
 InterpolateType Interpolate = ({ component, format, unsafe,
-                               props, children}) => raw.Interpolate_Raw(_mergeMaps({
+                               props, children}) => raw.Interpolate_Raw(_rawMap({
   'component':component,
   'format':format,
   'unsafe':unsafe,
@@ -391,7 +396,7 @@ typedef JumbotronType({dynamic componentClass,
                       Map props, dynamic children});
 
 JumbotronType Jumbotron =
-    ({componentClass: "div", props, children}) => raw.Jumbotron_Raw(_mergeMaps({
+    ({componentClass: "div", props, children}) => raw.Jumbotron_Raw(_rawMap({
   'componentClass': componentClass
 },
 props), children);
@@ -399,7 +404,7 @@ props), children);
 typedef LabelType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
                   Map props, dynamic children});
 
-LabelType Label = ({key, bsClass: CLASSES.label, bsStyle: STYLES.defaultStyle, bsSize, props, children}) => raw.Label_Raw(_mergeMaps({
+LabelType Label = ({key, bsClass: CLASSES.label, bsStyle: STYLES.defaultStyle, bsSize, props, children}) => raw.Label_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -409,7 +414,7 @@ LabelType Label = ({key, bsClass: CLASSES.label, bsStyle: STYLES.defaultStyle, b
 typedef ListGroupType({String className, String id, Map props, dynamic children});
 
 ListGroupType ListGroup =
-    ({className, id, props, children}) => raw.ListGroup_Raw(_mergeMaps({
+    ({className, id, props, children}) => raw.ListGroup_Raw(_rawMap({
   'className': className,
   'id': id,
 }, props), children);
@@ -429,7 +434,7 @@ typedef ListGroupItemType({dynamic key, CLASSES bsClass, LIST_GROUP_ITEM_STYLES 
 ListGroupItemType ListGroupItem = ({key, bsClass: CLASSES.list_group_item, bsStyle, bsSize,
                                    className, active, disabled, header, listItem,
                                    onClick, eventKey, href, target,
-                                   props, children}) => raw.ListGroupItem_Raw(_mergeMaps({
+                                   props, children}) => raw.ListGroupItem_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': LIST_GROUP_ITEM_STYLES_MAP[bsStyle],
@@ -452,7 +457,7 @@ typedef MenuItemType({dynamic key, bool header, bool divider, String href, Strin
 
 MenuItemType MenuItem = ({key, header, divider, href: '#', title, target, onSelect,
                          eventKey, active: false, disabled, props, children}) => raw.MenuItem_Raw(
-    _mergeMaps({
+    _rawMap({
       'key': key,
       'header': header,
       'divider': divider,
@@ -480,7 +485,7 @@ typedef ModalType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
 ModalType Modal = ({key, bsClass, bsStyle, bsSize,
                    title, backdrop, keyboard, closeButton, container, animation,
                    onRequestHide, dialogClassName, enforceFocus,
-                   props, children}) => raw.Modal_Raw(_mergeMaps({
+                   props, children}) => raw.Modal_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -503,7 +508,7 @@ typedef ModalTriggerType({ dynamic modal, Function onBlur, Function onFocus,
 ModalTriggerType ModalTrigger =
     ({ modal, onBlur, onFocus, onMouseOut, onMouseOver,
      props, children}) => raw.ModalTrigger_Raw(
-    _mergeMaps({
+    _rawMap({
       'modal': modal,
       'onBlur': onBlur,
       'onFocus': onFocus,
@@ -520,7 +525,7 @@ typedef NavType({dynamic key, CLASSES bsClass, NAV_STYLES bsStyle, SIZES bsSize,
 NavType Nav = ({key, bsClass: CLASSES.nav, bsStyle, bsSize, activeHref,
                activeKey, stacked, justified, onSelect, collapsible, expanded, navbar,
                eventKey, pullRight, right, defaultExpanded, props, children}) => raw
-.Nav_Raw(_mergeMaps({
+.Nav_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -549,7 +554,7 @@ NavbarType Navbar = ({key, bsClass: CLASSES.navbar,
                      bsStyle: STYLES.defaultStyle, bsSize, role: 'navigation', fixedTop,
                      fixedBottom, staticTop, inverse, fluid, componentClass: 'nav', brand,
                      toggleButton, toggleNavKey, onToggle, navExpanded, defaultNavExpanded,
-                     props, children}) => raw.Navbar_Raw(_mergeMaps({
+                     props, children}) => raw.Navbar_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -576,7 +581,7 @@ typedef NavItemType({dynamic key, CLASSES bsClass, NAV_STYLES bsStyle,
 
 NavItemType NavItem = ({key, bsClass, bsStyle, bsSize, onSelect, active,
                        disabled, href, title, eventKey, target, props, children}) => raw
-.NavItem_Raw(_mergeMaps({
+.NavItem_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -599,7 +604,7 @@ typedef OverlayTriggerType({String trigger, PLACEMENTS placement, int delay,
 OverlayTriggerType OverlayTrigger = ({trigger: const ['hover', 'focus'], placement: PLACEMENTS.right,
                                      delay, delayShow, delayHide, defaultOverlayShown, overlay,
                                      onBlur, onClick, onFocus, onMouseEnter, onMouseLeave, containerPadding: 0, rootClose,
-                                     props, children}) => raw.OverlayTrigger_Raw(_mergeMaps({
+                                     props, children}) => raw.OverlayTrigger_Raw(_rawMap({
   'trigger': trigger,
   'placement': placement,
   'delay': delay,
@@ -627,7 +632,7 @@ typedef PageItemType({String href, String target, String title, bool disabled,
 
 PageItemType PageItem = ({ href: '#', target, title, disabled, previous,
                          next, onSelect, eventKey,
-                         props, children}) => raw.PageItem_Raw(_mergeMaps({
+                         props, children}) => raw.PageItem_Raw(_rawMap({
   'href': href,
   'target': target,
   'title': title,
@@ -640,7 +645,7 @@ PageItemType PageItem = ({ href: '#', target, title, disabled, previous,
 
 typedef PagerType({OnSelectHandler onSelect, Map props, dynamic children});
 
-PagerType Pager = ({onSelect, props, children}) => raw.Pager_Raw(_mergeMaps(
+PagerType Pager = ({onSelect, props, children}) => raw.Pager_Raw(_rawMap(
     { 'onSelect':onSelect },
     props), children);
 
@@ -652,7 +657,7 @@ typedef PanelType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
 PanelType Panel = ({key, bsClass: CLASSES.panel, bsStyle: STYLES.defaultStyle, bsSize,
                    defaultExpanded, expanded, collapsible,
                    onSelect, header, id, footer, eventKey,
-                   props, children}) => raw.Panel_Raw(_mergeMaps({
+                   props, children}) => raw.Panel_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -677,7 +682,7 @@ typedef PanelGroupType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSi
 
 PanelGroupType PanelGroup = ({key, bsClass: CLASSES.panel_group, bsStyle, bsSize,
                              accordion, activeKey, className, defaultActiveKey, onSelect,
-                             props, children}) => raw.PanelGroup_Raw(_mergeMaps({
+                             props, children}) => raw.PanelGroup_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -699,7 +704,7 @@ PopoverType Popover = ({key, bsClass, bsStyle, bsSize,
                        placement: PLACEMENTS.right, positionLeft,
                        positionTop, arrowOffsetLeft, arrowOffsetTop,
                        title, animation: true,
-                       props, children}) => raw.Popover_Raw(_mergeMaps({
+                       props, children}) => raw.Popover_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -717,7 +722,7 @@ ProgressBarType ProgressBar =
      min: 0, now, max: 100, label,
      srOnly, striped, active, className,
      interpolateClass, isChild,
-     props, children}) => raw.ProgressBar_Raw(_mergeMaps({
+     props, children}) => raw.ProgressBar_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -737,7 +742,7 @@ ProgressBarType ProgressBar =
 typedef RowType({dynamic componentClass, Map props, dynamic children});
 
 RowType Row = ({componentClass: 'div', props, children}) => raw.Row_Raw(
-    _mergeMaps({'componentClass': componentClass}, props), children);
+    _rawMap({'componentClass': componentClass}, props), children);
 
 typedef SplitButtonType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
                         bool pullRight, dynamic title, String href, String id, String target,
@@ -748,7 +753,7 @@ typedef SplitButtonType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsS
 SplitButtonType SplitButton = ({key, bsClass, bsStyle, bsSize,
                                pullRight, title, href, id, target, dropdownTitle: 'Toggle dropdown',
                                dropup, onClick, onSelect, disabled, className,
-                               props, children}) => raw.SplitButton_Raw(_mergeMaps({
+                               props, children}) => raw.SplitButton_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -777,7 +782,7 @@ SubNavType SubNav = ({key, bsClass: CLASSES.nav, bsStyle, bsSize,
                      onSelect, active, activeHref, activeKey,
                      disabled, eventKey, href, title,
                      text, target,
-                     props, children}) => raw.SubNav_Raw(_mergeMaps({
+                     props, children}) => raw.SubNav_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -801,7 +806,7 @@ typedef TabPaneType({bool active, bool animation,
 TabPaneType TabPane = ({ active, animation: true,
                        onAnimateOutEnd, disabled,
                        props, children}) => raw.TabPane_Raw(
-    _mergeMaps({
+    _rawMap({
       'active': active,
       'animation': animation,
       'onAnimateOutEnd': onAnimateOutEnd,
@@ -818,7 +823,7 @@ typedef TabbedAreaType({dynamic key, CLASSES bsClass, TABBED_AREA_STYLES bsStyle
 
 TabbedAreaType TabbedArea = ({key, bsClass, bsStyle: TABBED_AREA_STYLES.tabs, bsSize,
                              activeKey, defaultActiveKey, animation: true, id, onSelect,
-                             props, children}) => raw.TabbedArea_Raw(_mergeMaps({
+                             props, children}) => raw.TabbedArea_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -837,7 +842,7 @@ typedef TableType({ bool striped, bool bordered, bool condensed,
 TableType Table = ({striped, bordered, condensed,
                    hover, responsive,
                    props, children}) => raw.Table_Raw(
-    _mergeMaps({
+    _rawMap({
       'striped': striped,
       'bordered': bordered,
       'condensed': condensed,
@@ -853,7 +858,7 @@ typedef ThumbnailType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSiz
 
 ThumbnailType Thumbnail = ({key, bsClass: CLASSES.thumbnail, bsStyle, bsSize,
                            alt, href, src,
-                           props, children}) => raw.Thumbnail_Raw(_mergeMaps({
+                           props, children}) => raw.Thumbnail_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -871,7 +876,7 @@ typedef TooltipType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
 TooltipType Tooltip = ({key, bsClass, bsStyle, bsSize,
                        placement: PLACEMENTS.right, positionLeft, positionTop, arrowOffsetLeft,
                        arrowOffsetTop, animation: true,
-                       props, children}) => raw.Tooltip_Raw(_mergeMaps({
+                       props, children}) => raw.Tooltip_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
@@ -888,7 +893,7 @@ typedef WellType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
                  Map props, dynamic children});
 
 WellType Well = ({key, bsClass: CLASSES.well, bsStyle, bsSize,
-                 props, children}) => raw.Well_Raw(_mergeMaps({
+                 props, children}) => raw.Well_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
   'bsStyle': STYLES_MAP[bsStyle],
