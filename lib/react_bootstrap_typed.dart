@@ -528,7 +528,7 @@ NavType Nav = ({key, bsClass: CLASSES.nav, bsStyle, bsSize, activeHref,
 .Nav_Raw(_rawMap({
   'key': key,
   'bsClass': CLASSES_MAP[bsClass],
-  'bsStyle': STYLES_MAP[bsStyle],
+  'bsStyle': NAV_STYLES_MAP[bsStyle],
   'bsSize': SIZES_MAP[bsSize],
   'activeHref': activeHref,
   'activeKey': activeKey,
