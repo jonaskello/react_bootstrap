@@ -26,6 +26,8 @@ typedef OnClickHandler(event, String key);
 
 typedef OnSelectHandler(String eventKey, [String href, dynamic unknown]);
 
+typedef OnChangeHandler(a);
+
 // dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
 
 typedef AccordionType({dynamic key, CLASSES bsClass, STYLES bsStyle, SIZES bsSize,
@@ -350,19 +352,22 @@ GridType Grid = ({fluid, componentClass: 'div', props, children}) => raw
   'fluid': fluid, 'componentClass': componentClass
 }, props), children);
 
-typedef InputType({String type, FORM_GROUP_SIZES bsSize, FORM_GROUP_STYLES bsStyle,
+typedef InputType({String ref, String type, FORM_GROUP_SIZES bsSize, FORM_GROUP_STYLES bsStyle,
                   dynamic label, dynamic help, dynamic addonBefore,
                   dynamic addonAfter, dynamic buttonBefore,
                   dynamic buttonAfter, bool hasFeedback, String id,
                   String groupClassName, String wrapperClassName, String labelClassName,
                   bool multiple, bool disabled, dynamic value,
+                  String placeholder, OnChangeHandler onChange,
                   Map props, dynamic children});
 
-InputType Input = ({type, bsSize, bsStyle,
+InputType Input = ({ref, type, bsSize, bsStyle,
                    label, help, addonBefore, addonAfter, buttonBefore, buttonAfter,
                    hasFeedback, id, groupClassName, wrapperClassName, labelClassName,
                    multiple, disabled, value,
+                   placeholder, onChange,
                    props, children}) => raw.Input_Raw(_rawMap({
+  'ref':ref,
   'type':type,
   'bsSize':FORM_GROUP_SIZES_MAP[bsSize],
   'bsStyle':FORM_GROUP_STYLES_MAP[bsStyle],
@@ -380,6 +385,8 @@ InputType Input = ({type, bsSize, bsStyle,
   'multiple':multiple,
   'disabled':disabled,
   'value':value,
+  'placeholder': placeholder,
+  'onChange': onChange,
 }, props), children);
 
 typedef InterpolateType({dynamic component, String format, bool unsafe,
