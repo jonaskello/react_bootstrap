@@ -86,13 +86,13 @@ Map<SIZES, String> SIZES_MAP = {
 };
 
 enum NAV_STYLES {
+  pills,
   tabs,
-  pills
 }
 
 Map<NAV_STYLES, String> NAV_STYLES_MAP = {
+  NAV_STYLES.pills: 'pills',
   NAV_STYLES.tabs: 'tabs',
-  NAV_STYLES.pills: 'pills'
 };
 
 
@@ -526,98 +526,193 @@ Map<GLYPHS, String> GLYPHS_MAP = {
   GLYPHS.flash: 'flash',
   GLYPHS.log_out: 'log-out',
   GLYPHS.new_window: 'new-window',
-GLYPHS.record: 'record',
-GLYPHS.save: 'save',
-GLYPHS.open: 'open',
-GLYPHS.saved: 'saved',
-GLYPHS.import: 'import',
-GLYPHS.export: 'export',
-GLYPHS.send: 'send',
-GLYPHS.floppy_disk: 'floppy-disk',
-GLYPHS.floppy_saved: 'floppy-saved',
-GLYPHS.floppy_remove: 'floppy-remove',
-GLYPHS.floppy_save: 'floppy-save',
-GLYPHS.floppy_open: 'floppy-open',
-GLYPHS.credit_card: 'credit-card',
-GLYPHS.transfer: 'transfer',
-GLYPHS.cutlery: 'cutlery',
-GLYPHS.header: 'header',
-GLYPHS.compressed: 'compressed',
-GLYPHS.earphone: 'earphone',
-GLYPHS.phone_alt: 'phone-alt',
-GLYPHS.tower: 'tower',
-GLYPHS.stats: 'stats',
-GLYPHS.sd_video: 'sd-video',
-GLYPHS.hd_video: 'hd-video',
-GLYPHS.subtitles: 'subtitles',
-GLYPHS.sound_stereo: 'sound-stereo',
-GLYPHS.sound_dolby: 'sound-dolby',
-GLYPHS.sound_5_1: 'sound-5-1',
-GLYPHS.sound_6_1: 'sound-6-1',
-GLYPHS.sound_7_1: 'sound-7-1',
-GLYPHS.copyright_mark: 'copyright-mark',
-GLYPHS.registration_mark: 'registration-mark',
-GLYPHS.cloud_download: 'cloud-download',
-GLYPHS.cloud_upload: 'cloud-upload',
-GLYPHS.tree_conifer: 'tree-conifer',
-GLYPHS.tree_deciduous: 'tree-deciduous',
-GLYPHS.cd: 'cd',
-GLYPHS.save_file: 'save-file',
-GLYPHS.open_file: 'open-file',
-GLYPHS.level_up: 'level-up',
-GLYPHS.copy: 'copy',
-GLYPHS.paste: 'paste',
-GLYPHS.alert: 'alert',
-GLYPHS.equalizer: 'equalizer',
-GLYPHS.king: 'king',
-GLYPHS.queen: 'queen',
-GLYPHS.pawn: 'pawn',
-GLYPHS.bishop: 'bishop',
-GLYPHS.knight: 'knight',
-GLYPHS.baby_formula: 'baby-formula',
-GLYPHS.tent: 'tent',
-GLYPHS.blackboard: 'blackboard',
-GLYPHS.bed: 'bed',
-GLYPHS.apple: 'apple',
-GLYPHS.erase: 'erase',
-GLYPHS.hourglass: 'hourglass',
-GLYPHS.lamp: 'lamp',
-GLYPHS.duplicate: 'duplicate',
-GLYPHS.piggy_bank: 'piggy-bank',
-GLYPHS.scissors: 'scissors',
-GLYPHS.bitcoin: 'bitcoin',
-GLYPHS.yen: 'yen',
-GLYPHS.ruble: 'ruble',
-GLYPHS.scale: 'scale',
-GLYPHS.ice_lolly: 'ice-lolly',
-GLYPHS.ice_lolly_tasted: 'ice-lolly-tasted',
-GLYPHS.education: 'education',
-GLYPHS.option_horizontal: 'option-horizontal',
-GLYPHS.option_vertical: 'option-vertical',
-GLYPHS.menu_hamburger: 'menu-hamburger',
-GLYPHS.modal_window: 'modal-window',
-GLYPHS.oil: 'oil',
-GLYPHS.grain: 'grain',
-GLYPHS.sunglasses: 'sunglasses',
-GLYPHS.text_size: 'text-size',
-GLYPHS.text_color: 'text-color',
-GLYPHS.text_background: 'text-background',
-GLYPHS.object_align_top: 'object-align-top',
-GLYPHS.object_align_bottom: 'object-align-bottom',
-GLYPHS.object_align_horizontal: 'object-align-horizontal',
-GLYPHS.object_align_left: 'object-align-left',
-GLYPHS.object_align_vertical: 'object-align-vertical',
-GLYPHS.object_align_right: 'object-align-right',
-GLYPHS.triangle_right: 'triangle-right',
-GLYPHS.triangle_left: 'triangle-left',
-GLYPHS.triangle_bottom: 'triangle-bottom',
-GLYPHS.triangle_top: 'triangle-top',
-GLYPHS.console: 'console',
-GLYPHS.superscript: 'superscript',
-GLYPHS.subscript: 'subscript',
-GLYPHS.menu_left: 'menu-left',
-GLYPHS.menu_right: 'menu-right',
-GLYPHS.menu_down: 'menu-down',
-GLYPHS.menu_up: 'menu-up'
+  GLYPHS.record: 'record',
+  GLYPHS.save: 'save',
+  GLYPHS.open: 'open',
+  GLYPHS.saved: 'saved',
+  GLYPHS.import: 'import',
+  GLYPHS.export: 'export',
+  GLYPHS.send: 'send',
+  GLYPHS.floppy_disk: 'floppy-disk',
+  GLYPHS.floppy_saved: 'floppy-saved',
+  GLYPHS.floppy_remove: 'floppy-remove',
+  GLYPHS.floppy_save: 'floppy-save',
+  GLYPHS.floppy_open: 'floppy-open',
+  GLYPHS.credit_card: 'credit-card',
+  GLYPHS.transfer: 'transfer',
+  GLYPHS.cutlery: 'cutlery',
+  GLYPHS.header: 'header',
+  GLYPHS.compressed: 'compressed',
+  GLYPHS.earphone: 'earphone',
+  GLYPHS.phone_alt: 'phone-alt',
+  GLYPHS.tower: 'tower',
+  GLYPHS.stats: 'stats',
+  GLYPHS.sd_video: 'sd-video',
+  GLYPHS.hd_video: 'hd-video',
+  GLYPHS.subtitles: 'subtitles',
+  GLYPHS.sound_stereo: 'sound-stereo',
+  GLYPHS.sound_dolby: 'sound-dolby',
+  GLYPHS.sound_5_1: 'sound-5-1',
+  GLYPHS.sound_6_1: 'sound-6-1',
+  GLYPHS.sound_7_1: 'sound-7-1',
+  GLYPHS.copyright_mark: 'copyright-mark',
+  GLYPHS.registration_mark: 'registration-mark',
+  GLYPHS.cloud_download: 'cloud-download',
+  GLYPHS.cloud_upload: 'cloud-upload',
+  GLYPHS.tree_conifer: 'tree-conifer',
+  GLYPHS.tree_deciduous: 'tree-deciduous',
+  GLYPHS.cd: 'cd',
+  GLYPHS.save_file: 'save-file',
+  GLYPHS.open_file: 'open-file',
+  GLYPHS.level_up: 'level-up',
+  GLYPHS.copy: 'copy',
+  GLYPHS.paste: 'paste',
+  GLYPHS.alert: 'alert',
+  GLYPHS.equalizer: 'equalizer',
+  GLYPHS.king: 'king',
+  GLYPHS.queen: 'queen',
+  GLYPHS.pawn: 'pawn',
+  GLYPHS.bishop: 'bishop',
+  GLYPHS.knight: 'knight',
+  GLYPHS.baby_formula: 'baby-formula',
+  GLYPHS.tent: 'tent',
+  GLYPHS.blackboard: 'blackboard',
+  GLYPHS.bed: 'bed',
+  GLYPHS.apple: 'apple',
+  GLYPHS.erase: 'erase',
+  GLYPHS.hourglass: 'hourglass',
+  GLYPHS.lamp: 'lamp',
+  GLYPHS.duplicate: 'duplicate',
+  GLYPHS.piggy_bank: 'piggy-bank',
+  GLYPHS.scissors: 'scissors',
+  GLYPHS.bitcoin: 'bitcoin',
+  GLYPHS.yen: 'yen',
+  GLYPHS.ruble: 'ruble',
+  GLYPHS.scale: 'scale',
+  GLYPHS.ice_lolly: 'ice-lolly',
+  GLYPHS.ice_lolly_tasted: 'ice-lolly-tasted',
+  GLYPHS.education: 'education',
+  GLYPHS.option_horizontal: 'option-horizontal',
+  GLYPHS.option_vertical: 'option-vertical',
+  GLYPHS.menu_hamburger: 'menu-hamburger',
+  GLYPHS.modal_window: 'modal-window',
+  GLYPHS.oil: 'oil',
+  GLYPHS.grain: 'grain',
+  GLYPHS.sunglasses: 'sunglasses',
+  GLYPHS.text_size: 'text-size',
+  GLYPHS.text_color: 'text-color',
+  GLYPHS.text_background: 'text-background',
+  GLYPHS.object_align_top: 'object-align-top',
+  GLYPHS.object_align_bottom: 'object-align-bottom',
+  GLYPHS.object_align_horizontal: 'object-align-horizontal',
+  GLYPHS.object_align_left: 'object-align-left',
+  GLYPHS.object_align_vertical: 'object-align-vertical',
+  GLYPHS.object_align_right: 'object-align-right',
+  GLYPHS.triangle_right: 'triangle-right',
+  GLYPHS.triangle_left: 'triangle-left',
+  GLYPHS.triangle_bottom: 'triangle-bottom',
+  GLYPHS.triangle_top: 'triangle-top',
+  GLYPHS.console: 'console',
+  GLYPHS.superscript: 'superscript',
+  GLYPHS.subscript: 'subscript',
+  GLYPHS.menu_left: 'menu-left',
+  GLYPHS.menu_right: 'menu-right',
+  GLYPHS.menu_down: 'menu-down',
+  GLYPHS.menu_up: 'menu-up'
 };
 
+enum BUTTON_INPUT_TYPES {
+  button,
+  reset,
+  submit
+}
+
+Map<BUTTON_INPUT_TYPES, String> BUTTON_INPUT_TYPES_MAP = {
+  BUTTON_INPUT_TYPES.button: 'button',
+  BUTTON_INPUT_TYPES.reset: 'reset',
+  BUTTON_INPUT_TYPES.submit: 'submit',
+};
+
+enum FORM_GROUP_SIZES {
+  small,
+  medium,
+  large
+}
+
+Map<FORM_GROUP_SIZES, String> FORM_GROUP_SIZES_MAP = {
+  FORM_GROUP_SIZES.small: 'small',
+  FORM_GROUP_SIZES.medium: 'medium',
+  FORM_GROUP_SIZES.large: 'large',
+};
+
+enum FORM_GROUP_STYLES {
+  success,
+  warning,
+  error
+}
+
+Map<FORM_GROUP_STYLES, String> FORM_GROUP_STYLES_MAP = {
+  FORM_GROUP_STYLES.success: 'success',
+  FORM_GROUP_STYLES.warning: 'warning',
+  FORM_GROUP_STYLES.error: 'error',
+};
+
+enum CAROUSEL_DIRECTION {
+  prev,
+  next
+}
+
+Map<CAROUSEL_DIRECTION, String> CAROUSEL_DIRECTION_MAP = {
+  CAROUSEL_DIRECTION.prev: 'prev',
+  CAROUSEL_DIRECTION.next: 'next',
+};
+
+enum LIST_GROUP_ITEM_STYLES {
+  danger,
+  info,
+  success,
+  warning
+}
+
+Map<LIST_GROUP_ITEM_STYLES, String> LIST_GROUP_ITEM_STYLES_MAP = {
+  LIST_GROUP_ITEM_STYLES.danger: 'danger',
+  LIST_GROUP_ITEM_STYLES.info: 'info',
+  LIST_GROUP_ITEM_STYLES.success: 'success',
+  LIST_GROUP_ITEM_STYLES.warning: 'warning',
+};
+
+enum MODAL_BACKDROPS {
+  static,
+  trueValue,
+  falseValue,
+}
+
+Map<MODAL_BACKDROPS, String> MODAL_BACKDROPS_MAP = {
+  MODAL_BACKDROPS.static: 'static',
+  MODAL_BACKDROPS.trueValue: true,
+  MODAL_BACKDROPS.falseValue: false,
+};
+
+enum PLACEMENTS {
+  top,
+  right,
+  bottom,
+  left,
+}
+
+Map<PLACEMENTS, String> PLACEMENTS_MAP = {
+  PLACEMENTS.top: 'top',
+  PLACEMENTS.right: 'right',
+  PLACEMENTS.bottom: 'bottom',
+  PLACEMENTS.left: 'left',
+};
+
+enum TABBED_AREA_STYLES {
+  tabs,
+  pills,
+}
+
+Map<TABBED_AREA_STYLES, String> TABBED_AREA_STYLES_MAP = {
+  TABBED_AREA_STYLES.tabs: 'tabs',
+  TABBED_AREA_STYLES.pills: 'pills',
+};
