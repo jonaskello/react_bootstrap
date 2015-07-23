@@ -358,14 +358,14 @@ typedef InputType({String ref, String type, FORM_GROUP_SIZES bsSize, FORM_GROUP_
                   dynamic buttonAfter, bool hasFeedback, String id,
                   String groupClassName, String wrapperClassName, String labelClassName,
                   bool multiple, bool disabled, dynamic value,
-                  String placeholder, OnChangeHandler onChange,
+                  String placeholder, OnChangeHandler onChange, String list,
                   Map props, dynamic children});
 
 InputType Input = ({ref, type, bsSize, bsStyle,
                    label, help, addonBefore, addonAfter, buttonBefore, buttonAfter,
                    hasFeedback, id, groupClassName, wrapperClassName, labelClassName,
                    multiple, disabled, value,
-                   placeholder, onChange,
+                   placeholder, onChange, list,
                    props, children}) => raw.Input_Raw(_rawMap({
   'ref':ref,
   'type':type,
@@ -387,6 +387,7 @@ InputType Input = ({ref, type, bsSize, bsStyle,
   'value':value,
   'placeholder': placeholder,
   'onChange': onChange,
+  'list': list
 }, props), children);
 
 typedef InterpolateType({dynamic component, String format, bool unsafe,
